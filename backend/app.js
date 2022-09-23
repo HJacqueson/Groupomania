@@ -1,3 +1,4 @@
+require ('dotenv').config();
 const express = require('express');   //utilisation d'express
 const app = express();
 const mongoose = require('mongoose');   //utilisation de la base données mongoDB
@@ -9,7 +10,7 @@ const path = require('path');
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 
-mongoose.connect('mongodb+srv://Jaxon84:FanetteSalska84@cluster0.kqwhflt.mongodb.net/?retryWrites=true&w=majority',   //connexion à mongoDB
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_MDP}@cluster0.kqwhflt.mongodb.net/?retryWrites=true&w=majority`,   //connexion à mongoDB
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({extended:false}));   //encodage des url
 app.use(helmet({ crossOriginResourcePolicy: { policy: "same-site" } }));    //Verification des en-tête
 
 app.use((req, res, next) => {   //gestion des accès
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin', process.env.FRONT_PORT);
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
@@ -33,4 +34,4 @@ app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/comments', commentRoutes);
 
-module.exports = app;
+app.listen(process.env.PORT, () => console.log('Serveur lancé correctement'))

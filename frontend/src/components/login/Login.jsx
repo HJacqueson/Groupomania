@@ -1,15 +1,13 @@
 import axios from 'axios';
-// import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 
-
-
-function Login (props) {
+function Login () {
     const { register, handleSubmit} = useForm();
 
     const login = user => {
         console.log(user)
+        localStorage.clear()
         axios.post('http://localhost:4200/api/auth/login', user,
         {
             headers: {'Content-Type': 'application/json'}
@@ -18,34 +16,21 @@ function Login (props) {
             console.log(res.status)
             console.log(res.data)
             localStorage.setItem('userId', res.data.userId)
+            localStorage.setItem('firstname', res.data.firstname)
+            localStorage.setItem('email', res.data.email)
+            localStorage.setItem('lastname', res.data.lastname)
             localStorage.setItem('role', res.data.role)
             localStorage.setItem('token', res.data.token)
+            localStorage.setItem('profilePicture', res.data.profilePicture)
             window.location = '/welcome'
-            
         })
         .catch(error => {
-            console.log(error);
-           
+            console.log(error)
             alert(": Veuillez créer un Compte, ou entrer un Email et un Mot de Passe correct !")
         });
         
     }
     
-    // const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    // const passwordReg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/;
-
-    // function emailValidation(email, password) {
-    //     // if (!email.match(emailReg)) {
-    //     //     alert("erreur : Votre email est invalide !");
-    //     //     return;
-    //     // }else if (!password.match(passwordReg)) {
-    //     //     alert('Erreur : votre mot de passe est invalide !');
-    //     //     return;
-    //     // }else{
-    //         login();
-    //     // } 
-    // }
-
     return (
         <div className='container'>
             <h3 className='mt-5 pt-5'>Connexion</h3>
@@ -68,7 +53,7 @@ function Login (props) {
                         </div>
                         <button type='submit' className='btn btn-primary mt-3' 
                         onClick={
-                            (() => login/*, () => emailValidation(email, password)*/)
+                            (() => login)
                         }>Connexion</button>
                     </form>
                     <p className='mt-5'>Vous n'avez pas de compte ?</p>

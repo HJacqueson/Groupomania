@@ -8,9 +8,10 @@ const userSchema = mongoose.Schema({    //schéma utilsateur
   password: { 'type': String, required: true } ,
   role : {'type': String, default:'SALARIE'},
   bio:{'type': String, required: false},
-  profilePicture: {'type': String, default:'../images/profile/profile.png'},
+  profilePicture: {'type': String, default:'./images/profile/profile.png'},
 });
 
 userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', userSchema);
+

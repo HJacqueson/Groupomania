@@ -1,102 +1,104 @@
 import axios from 'axios';
-import {useState} from 'react';
-import React from 'react';
-import {useNavigate} from 'react-router-dom';
+
+import {useForm} from 'react-hook-form';
+
+
 
 function Signup () {
-    const [lastname, setLastname] = useState('');
-    const [firstname, setFirstname] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    // const [error, setError] = useState();
-    const navigate = useNavigate(); 
-    const user = {lastname, firstname, email, password}
+    const { register, handleSubmit, formState: { errors },} = useForm();
 
-    const signup = () => {
+    const signup = user => {
+        console.log(user)
         axios.post('http://localhost:4200/api/auth/signup', user,
-                {
-                    headers: {'Content-Type': 'application/json'}
-                })
-       
-            .then(signup => {
-                console.log(signup.status);
-                alert('Nouveau Compte créé ! Veuillez vous connecter');
-                navigate('/login')
-            })
-            .catch(error => {
-                console.log(error);
-                alert('Adresse mail déjà utilisée ! Veuillez vous connecter ou vous inscrire avec une adresse mail différente.');
-            })
-            navigate('/login')
-    }
-
-    const emailReg = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const passwordReg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/;
-
-    function idValidation(email, password, firstname, lastname) {
-        if (!email.match(emailReg)) {
-            alert('Erreur : votre email est invalide !');
-            return;
-        } else if (!password.match(passwordReg)) {
-            alert('Erreur : votre mot de passe est invalide !');
-            return;
-        } else if (firstname === '' || firstname === undefined) {
-            alert(`Erreur : Vous n'avez pas entré votre prénom`);
-            return;
-        } else if (lastname === '' || lastname === undefined) {
-            alert(`Erreur : Vous n'avez pas entré votre nom`);
-            return;
-        } else {
-            signup();
-        } 
+        {
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(res => {
+            console.log(res.status)
+            console.log(res.data)
+            alert('Nouveau Compte créé ! Veuillez vous connecter')
+            window.location = '/login'
+            
+        })
+        .catch(error => {
+            console.log(error);
+            alert('Adresse mail déjà utilisée ! Veuillez vous connecter ou vous inscrire avec une adresse mail différente.');
+        });
+        
     }
 
     return (
         <div className='container'>
-            <h3 className='mt-5 pt-5'>Inscription</h3>
-            <div className='row'>
-                <div className='col-md-4 mt-4 mb-3'>
-                    <form>
+            <h3 className='mt-5 pt-5'>S'inscrire</h3>
+            <div className='row mb-5'>
+                <div className='col-4 mt-5'>
+                    <form onSubmit={handleSubmit(signup)}>
                         <div className='form-group'>
-                            <label htmlFor='firstname'>Prénom</label>
-                            <input type='text' className='form-control' id='firstname' placeholder='Prénom' 
-                            onChange={(e) => {
-                                setFirstname(e.target.value);
-                            }}
-                            ></input>
-                            <small id='emailHelp' className='form-text text-muted'>champs requis</small>
-                        </div>
+                            <label htmlFor='exampleInputLastName'>Nom</label>
+                            <input autoFocus required type='text' className='form-control' id='lastname' placeholder='Entrez votre Nom' 
+                            {...register("lastname", {
+                                minLength: 2,
+                                maxLength: 26,
+                                pattern: /[a-zA-ZÀ-ÿ]/,
+                              })}
+                            />
+                            {errors.lastname && (
+                                <p className="text-center text-danger mt-1">
+                                  Le nom de famille ne doit contenir que des lettres !
+                                </p>
+                            )}{''}
+                            <small className='form-text text-muted'>Veuillez rentrer votre nom de famille</small>
+                       </div>
+                       <div className='form-group'>
+                            <label htmlFor='exampleInputLastName'>Prénom</label>
+                            <input required type='text' className='form-control' id='firstname' placeholder='Entrez votre Prénom' 
+                            {...register("firstname", {
+                                minLength: 2,
+                                maxLength: 26,
+                                pattern: /[a-zA-ZÀ-ÿ]/,
+                              })}
+                            />
+                            {errors.firstname && (
+                                <p className="text-center text-danger mt-1">
+                                    Le prénom ne doit contenir que des lettres !
+                                </p>
+                            )}{''}
+                            <small className='form-text text-muted'>Veuillez rentrer votre prénom</small>
+                       </div>
+                       <div className='form-group'>
+                            <label htmlFor='exampleInputEmail'>Adresse Mail</label>
+                            <input type='email' className='form-control' id='email' placeholder='Entrez votre Email' 
+                            {...register("email", {
+                                minLength: 5,
+                                pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}/,
+                              })}
+                            />
+                            {errors.email && (
+                                <p className="text-center text-danger mt-1">
+                                    Entrer une adresse email valide !
+                                </p>
+                            )}
+                            <small className='form-text text-muted'>Veuillez rentrer votre adresse mail</small>
+                       </div>
                         <div className='form-group'>
-                            <label htmlFor='lastname'>Nom</label>
-                            <input type='text' className='form-control' id='lastname' placeholder='Nom de famille'
-                            onChange={(e) => {
-                                setLastname(e.target.value);
-                            }}
-                            ></input>
-                            <small id='emailHelp' className='form-text text-muted'>champs requis</small>
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor='email'>Adresse mail</label>
-                            <input type='email' className='form-control' id='email' placeholder='Enter email'
-                            onChange={(e) => {
-                                setEmail(e.target.value);
-                            }}
-                            ></input>
-                            <small id='emailHelp' className='form-text text-muted'>champs requis</small>
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor='password'>Mot de passe</label>
-                            <input type='password' className='form-control' id='password' placeholder='Password'
-                            onChange={(e) => {
-                                setPassword(e.target.value);
-                            }}
-                            ></input>
-                            <small id='emailHelp' className='form-text text-muted'>minimum 8 caractères avec au moins 1 majuscule 1 minuscule 1 caractère.</small>
+                            <label htmlFor='exampleInputPassword'>Mot de Passe</label>
+                            <input type='password' className='form-control' id='password' placeholder='Entrez votre mot de passe' 
+                            {...register("password", {
+                                minLength: 8,
+                                pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/
+                              })}
+                            />
+                            {errors.password && (
+                                <p className="text-center text-danger mt-1">
+                                    Le mot de passe doit contenir au moins 8 caractères avec au moins 1 majuscule 1 minuscule et 1 caractère spécial !
+                                </p>
+                            )}
+                            <small className='form-text text-muted'>Veuillez rentrer votre mot de passe</small>
                         </div>
                         <button type='submit' className='btn btn-primary mt-3' 
                         onClick={
-                            (() => signup (), () => idValidation(email, password, firstname, lastname))
-                        }>Je m'inscris</button>
+                            (() => signup)
+                        }>Connexion</button>
                     </form>
                 </div>
             </div>

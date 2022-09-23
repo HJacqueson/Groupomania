@@ -1,3 +1,4 @@
+require ('dotenv').config();
 const bcrypt = require('bcrypt');       //utilisation de hasheur en ligne
 const jwt = require('jsonwebtoken');        //utilisation d'un token
 
@@ -20,9 +21,7 @@ exports.signup = (req, res, next) => {      //inscription d'n nouvel utilisateur
         console.log(user);
         user.save()
           .then(() => res.status(201).json({ message: "Compte créé !" }))
-          .catch(error => res.status(400).json({ message: error + "Adrresse mail déja utilisée !" }));
       })
-      .catch(error => res.status(500).json({ error }));
 };
 
 exports.login = (req, res, next) => {       //connexion d'un utilisateur
@@ -37,16 +36,17 @@ exports.login = (req, res, next) => {       //connexion d'un utilisateur
                         return res.status(401).json({ message: "Mot de passe incorrecte" });
                     }
                     res.status(200).json({      //création d'un token d'authentification
+                        firstname: user.firstname,
+                        lastname: user.lastname,
                         userId: user._id,
                         role: user.role,
+                        profilePicture: user.profilePicture,
                         token: jwt.sign(
                             { userId: user._id },
-                            'RANDOM_TOKEN_SECRET',
+                            process.env.TOKEN,
                             { expiresIn: '24h' }
                         )
                     });
                 })
-                .catch(error => res.status(500).json({ error }));
         })
-        .catch(error => res.status(500).json({ error }));
 };

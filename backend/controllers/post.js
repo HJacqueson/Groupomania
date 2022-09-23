@@ -12,32 +12,27 @@ exports.createPost = (req, res, next) => {      //création d'un post
     });
     post.save()
     .then(() => res.status(201).json({message: 'Post enregistré !'}))
-    .catch(error => res.status(500).json({message: error}))
   }else{
     const post = new Post({
         ...postObject });
     post.save()
     .then(() => res.status(201).json({message: 'Post enregistré !'}))
-    .catch(error => res.status(500).json({message: error}))
   }
 };
 
 exports.getAllPosts = (req, res, next) => {     //obtention de l'ensemble des posts de tous les utilisateurs
     Post.findAll({order: ['createdAt', 'DESC']})
       .then(posts => res.status(200).json(posts))
-      .catch(error => res.status(404).json({ error }));
 };
 
 exports.getOnePost = (req, res, next) => {      //obtention d'un post d'un utilisateur
     Post.findOne({ _id: req.params.id })
       .then(post => res.status(200).json(post))
-      .catch(error => res.status(404).json({ error }));
 };
 
 exports.getPostsByUserId = (req, res, next) => {        //obtention de tous les posts d'un utilisateur
     Post.findAll({where: {userId: req.params.id}, order: ['createdAt', 'DESC']})
     .then(posts => {res.status(200).json({data: posts});})
-    .catch(error => res.status(404).json({ error }));
 };
 
 exports.modifyPost = (req, res, next) => {      //modification d'un post
@@ -55,12 +50,8 @@ exports.modifyPost = (req, res, next) => {      //modification d'un post
             } else {
                 Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
                 .then(() => res.status(200).json({message : 'Objet modifié!'}))
-                .catch(error => res.status(401).json({ error }));
             }
         })
-        .catch((error) => {
-            res.status(400).json({ error });
-        });
    } else {
     const postObject = req.file ? {
         ...JSON.parse(req.body.post)} : { ...req.body };
@@ -72,12 +63,8 @@ exports.modifyPost = (req, res, next) => {      //modification d'un post
             } else {
                 Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
                 .then(() => res.status(200).json({message : 'Objet modifié!'}))
-                .catch(error => res.status(401).json({ error }));
             }
         })
-        .catch((error) => {
-            res.status(400).json({ error });
-        });
   }
 };
 
@@ -93,18 +80,13 @@ exports.deletePost = (req, res, next) => {      //suppression d'un post
                 fs.unlink(`images/post/${filename}`, () => {
                 Post.deleteOne({_id: req.params.id})
                     .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
-                    .catch(error => res.status(401).json({ error }));
                 });
               } else {
                 Post.deleteOne({_id: req.params.id})
                     .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
-                    .catch(error => res.status(401).json({ error }));
               }
           }
       })
-      .catch( error => {
-          res.status(500).json({ error });
-      });
 };
 
 exports.likePost = (req, res, next) => {        //like dislike d'un post
@@ -143,5 +125,4 @@ exports.likePost = (req, res, next) => {        //like dislike d'un post
           res.status(200).send({message: 'Modification like effectué'})
       } 
   })
-  .catch(error => res.status(500).json({error}))
 }

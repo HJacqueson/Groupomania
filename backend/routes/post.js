@@ -6,7 +6,7 @@ const limited = require('../middleware/limite-req');        //utilisation du mid
 
 const postCtrl = require('../controllers/post');        //utilisation du contrôleur post
 
-router.post('/', auth, limited, multer, postCtrl.createPost)     //étape à valider pour la création d'un post
+router.post('/createPost', /*auth, limited,*/ multer, postCtrl.createPost)     //étape à valider pour la création d'un post
 router.get('/', auth, postCtrl.getAllPosts);        //étape à valider pour l'obtention de l'ensemble des posts
 router.get('/:id', auth, postCtrl.getOnePost);      //étape à valider pour l'obtention d'un post
 router.put('/:id', auth, limited, multer, postCtrl.modifyPost);      //étape à valider pour la modification d'un post
