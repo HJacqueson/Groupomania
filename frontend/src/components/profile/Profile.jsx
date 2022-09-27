@@ -15,7 +15,7 @@ function Profile(){
                 <div className='col-10 mt-3'>
                     <img className='imgProfil' alt='portrait' src={profilePicture} ></img>
                 </div>
-                <h5 className='name'>Bonjour {firstname} {lastname}</h5>
+                <h4 className='name'>Bonjour {firstname} {lastname}</h4>
             </div>
             <div className='row'>
                 <div className='col-2'><button onClick={() =>{ navigate('/post')}} type='submit' className='btn btn-light mt-5'>Poster un article</button></div>

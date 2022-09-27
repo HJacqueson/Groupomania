@@ -11,10 +11,13 @@ function Banner() {
                 <div id="navbarNav" className="collapse navbar-collapse justify-content-end">
                     <ul  className=" navbar-nav">
                         <li className="nav-item active">
-                            <Link className='nav-link' to='/login'>Se Connecter</Link>
+                            <Link className='nav-link' to='/welcome'>Fil d'Actualité</Link>
                         </li>
                         <li className="nav-item active">
-                            <Link className='nav-link' to='/signup'>S'Inscrire</Link>
+                            <Link className='nav-link' to='/profile'>Mon Profil</Link>
+                        </li>
+                        <li className="nav-item active">
+                            <Link className='nav-link' to='/logout'>Se déconnecter</Link>
                         </li>
                     </ul>
                 </div>
@@ -24,4 +27,4 @@ function Banner() {
     )
 }
 
-export default Banner;
+export default Banner

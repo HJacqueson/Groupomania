@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
+import background from '../../assets/home_background_groupomania.jpg'
+
 
 function Login () {
     const { register, handleSubmit} = useForm();
@@ -33,9 +35,12 @@ function Login () {
     
     return (
         <div className='container'>
-            <h3 className='mt-5 pt-5'>Connexion</h3>
+            <h1 className="text-center fw-bold pt-5">Bienvenue</h1>
+            <h2 className="text-center fw-light p-4">sur le réseau social de Groupomania !</h2>
+            {/* <img src={logo} className="w-100" alt="Logo de Groupomania, entreprise de grande distribution européenne" /> */}
             <div className='row mb-5'>
-                <div className='col-4 mt-5'>
+                <div className='col-4'>
+                <h3>Connexion</h3>
                     <form onSubmit={handleSubmit(login)}>
                        <div className='form-group'>
                             <label htmlFor='exampleInputEmail'>Adresse Mail</label>
@@ -60,6 +65,8 @@ function Login () {
                     <Link className="signup-link" to="/signup">
                         Créer un compte
                     </Link>
+                </div>
+                <div className="col-8" style={{ backgroundImage: `url(${background})` }}>
                 </div>
             </div>
         </div>

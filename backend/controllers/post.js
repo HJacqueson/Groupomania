@@ -1,5 +1,7 @@
 const Post = require('../models/Post');     //utilisation du modèle post
 const fs = require('fs');       //module de gestion de fichier
+const auth = require('../middleware/auth');
+
 
 exports.createPost = (req, res, next) => {      //création d'un post
   const postObject = JSON.parse(req.body.post);
@@ -8,6 +10,7 @@ exports.createPost = (req, res, next) => {      //création d'un post
   if(image != null ) {
     const post = new Post({
       ...postObject,
+      userId: auth(req),
       imageUrl:`${req.protocol}://${req.get('host')}/images/post/${req.file.filename}`
     });
     post.save()

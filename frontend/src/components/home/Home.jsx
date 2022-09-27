@@ -3,9 +3,6 @@ import React from "react";
 // Static Images
 import logo from "../../assets/logo.png";
 
-// Styles
-//import "./Home.css";
-
 const Home = () => {
     return (
         <div className='container'>
