@@ -16,7 +16,7 @@ function Post() {
     const onSubmit = post => {
         const newpost = Object.assign({}, post, userlastname, userfirstname, userprofilepicture)
         console.log(newpost)
-        axios.post('http://localhost:4200/api/post/createPost', newpost,
+        axios.post('http://localhost:4200/api/post', newpost,
             {
                 headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${mytoken}` }
             })

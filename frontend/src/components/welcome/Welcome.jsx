@@ -9,7 +9,7 @@ function Welcome(props) {
     let mytoken = localStorage.getItem('token');
  
     useEffect(() => {
-        axios.get(process.env.REACT_APP_POSTS, {
+        axios.get('http://localhost:4200/api/post', {
             headers:{
                 'Authorization': `Bearer ${mytoken}`
             }
