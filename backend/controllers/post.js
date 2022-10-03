@@ -3,28 +3,36 @@ const fs = require('fs');       //module de gestion de fichier
 const auth = require('../middleware/auth');
 
 
-exports.createPost = (req, res, next) => {      //création d'un post
+
+exports.createPost = (req, res, next) => {     //création d'un post
+  console.log(req.body);
+//   return res.send(req.body);
+  const userId = req.auth.userId;
+//   console.log(userId);
+//   return res.send(req.body);
   const postObject = JSON.parse(req.body.post);
+  console.log(postObject);
   delete postObject._id;
-  let image = req.file.filename
+  let image = req.file
   if(image != null ) {
     const post = new Post({
       ...postObject,
-      userId: auth(req),
-      imageUrl:`${req.protocol}://${req.get('host')}/images/post/${req.file.filename}`
+      userId,
+      imageUrl:`${req.protocol}://${req.get('host')}/images/${image.filename}`
     });
     post.save()
     .then(() => res.status(201).json({message: 'Post enregistré !'}))
   }else{
     const post = new Post({
-        ...postObject });
+        ...postObject,
+    userId});
     post.save()
     .then(() => res.status(201).json({message: 'Post enregistré !'}))
   }
 };
 
 exports.getAllPosts = (req, res, next) => {     //obtention de l'ensemble des posts de tous les utilisateurs
-    Post.findAll({order: ['createdAt', 'DESC']})
+    Post.find({order: ['createdAt', 'DESC']})
       .then(posts => res.status(200).json(posts))
 };
 

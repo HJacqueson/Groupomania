@@ -17,11 +17,11 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGOD
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended:false}));   //encodage des url
+// app.use(bodyParser.urlencoded({extended:false}));   //encodage des url
 app.use(helmet({ crossOriginResourcePolicy: { policy: "same-site" } }));    //Verification des en-tête
 
 app.use((req, res, next) => {   //gestion des accès
-    res.setHeader('Access-Control-Allow-Origin', process.env.FRONT_PORT);
+    res.setHeader('Access-Control-Allow-Origin', '*' /*process.env.FRONT_PORT*/);
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();

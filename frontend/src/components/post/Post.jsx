@@ -4,21 +4,16 @@ import axios from 'axios'
 function Post() {
     const { register, handleSubmit } = useForm()
     let mytoken = localStorage.getItem('token')
-    let lastname = localStorage.getItem('lastname')
-    let firstname = localStorage.getItem('firstname')
-    let profilePicture = localStorage.getItem('profilePicture')
-    
-    let userlastname = {'lastname': lastname}
-    let userfirstname = {'firstname': firstname}
-    let userprofilepicture = {'profilePicture': profilePicture}
-
 
     const onSubmit = post => {
-        const newpost = Object.assign({}, post, userlastname, userfirstname, userprofilepicture)
-        console.log(newpost)
-        axios.post('http://localhost:4200/api/post', newpost,
+        console.log(post.imageUrl)
+        const newPost = new FormData()
+        newPost.append("imageUrl", post.imageUrl[0])
+        newPost.append("post", JSON.stringify(post))
+        console.log(post)
+        axios.post('http://localhost:4200/api/posts', newPost,
             {
-                headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${mytoken}` }
+                headers: {'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${mytoken}` }
             })
         .then(res => {
             console.log(res.status)

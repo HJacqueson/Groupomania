@@ -1,15 +1,15 @@
 import axios from 'axios';
-import {useState, useEffect} from 'react';
-import Comment from '../comment/Comment';
-import Profil from '../profile/Profile';
+import {useState, useEffect} from 'react'
+import Comment from '../comment/Comment'
+import Profil from '../profile/Profile'
 
 
 function Welcome(props) {
-    const [item, setItem] = useState();
-    let mytoken = localStorage.getItem('token');
+    const [item, setItem] = useState()
+    let mytoken = localStorage.getItem('token')
  
     useEffect(() => {
-        axios.get('http://localhost:4200/api/post', {
+        axios.get('http://localhost:4200/api/posts', {
             headers:{
                 'Authorization': `Bearer ${mytoken}`
             }
@@ -19,7 +19,7 @@ function Welcome(props) {
             setItem(res.data)
         })
         .catch(error => console.log(error))
-    })
+    },[])
   
     if (item === undefined) {
         return (
@@ -40,9 +40,9 @@ function Welcome(props) {
                             <div className="card-body"> 
                                 <h5 className="card-title" style={{color:"black"}}>{post.title} </h5>
                                 <p className="card-text">{post.content}.</p>
-                                <img className="card-img-top" src={post.attachement} alt="Card cap"></img>
-                                <p>posté par {post.user.firstname} {post.User.lastname}</p>
-                                <Comment postId={post.id} props={props} />
+                                <img className="card-img-top" src={post.imageUrl} alt="Card cap"></img>
+                                {/* <p>posté par {post.firstname} {post.lastname}</p> */}
+                                <Comment postId={post._id} props={props} />
                             </div>
                         </div>
                         

@@ -18,6 +18,7 @@ function App() {
                 <Route path='/welcome' element={<Banner />} />
                 <Route path='/profile' element={<Banner />} />
                 <Route path='/logout' element={<Banner />} />
+                <Route path='/post' element={<Banner />} />
             </Routes>
             <Routes>
                 <Route path='/' element={<Login />} />
