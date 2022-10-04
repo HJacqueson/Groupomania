@@ -1,10 +1,10 @@
-require ('dotenv').config();
-const bcrypt = require('bcrypt');       //utilisation de hasheur en ligne
-const jwt = require('jsonwebtoken');        //utilisation d'un token
+require ("dotenv").config();
+const bcrypt = require("bcrypt");       //utilisation de hasheur en ligne
+const jwt = require("jsonwebtoken");        //utilisation d"un token
 
-const User = require('../models/User');     //utilisation du modèle utilisateur
+const User = require("../models/User");     //utilisation du modèle utilisateur
 
-exports.signup = (req, res, next) => {      //inscription d'n nouvel utilisateur
+exports.signup = (req, res, next) => {      //inscription d"n nouvel utilisateur
     console.log(req.body.email);
     console.log(req.body.password);
     bcrypt.hash(req.body.password, 10)      //cryptage via bcrypt
@@ -24,7 +24,7 @@ exports.signup = (req, res, next) => {      //inscription d'n nouvel utilisateur
       })
 };
 
-exports.login = (req, res, next) => {       //connexion d'un utilisateur
+exports.login = (req, res, next) => {       //connexion d"un utilisateur
     User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
@@ -35,7 +35,7 @@ exports.login = (req, res, next) => {       //connexion d'un utilisateur
                     if (!valid) {
                         return res.status(401).json({ message: "Mot de passe incorrecte" });
                     }
-                    res.status(200).json({      //création d'un token d'authentification
+                    res.status(200).json({      //création d"un token d"authentification
                         firstname: user.firstname,
                         lastname: user.lastname,
                         userId: user._id,
@@ -44,7 +44,7 @@ exports.login = (req, res, next) => {       //connexion d'un utilisateur
                         token: jwt.sign(
                             { userId: user._id },
                             process.env.TOKEN,
-                            { expiresIn: '24h' }
+                            { expiresIn: "24h" }
                         )
                     });
                 })

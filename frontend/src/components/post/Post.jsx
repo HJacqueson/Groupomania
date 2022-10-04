@@ -1,9 +1,9 @@
-import {useForm} from 'react-hook-form'
-import axios from 'axios'
+import {useForm} from "react-hook-form"
+import axios from "axios"
 
 function Post() {
     const { register, handleSubmit } = useForm()
-    let mytoken = localStorage.getItem('token')
+    let mytoken = localStorage.getItem("token")
 
     const onSubmit = post => {
         console.log(post.imageUrl)
@@ -11,15 +11,15 @@ function Post() {
         newPost.append("imageUrl", post.imageUrl[0])
         newPost.append("post", JSON.stringify(post))
         console.log(post)
-        axios.post('http://localhost:4200/api/posts', newPost,
+        axios.post("http://localhost:4200/api/posts", newPost,
             {
-                headers: {'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${mytoken}` }
+                headers: {"Content-Type": "multipart/form-data", "Authorization": `Bearer ${mytoken}` }
             })
         .then(res => {
             console.log(res.status)
             console.log(res.data)
-            alert('Nouvel article créé !')
-            window.location = '/welcome'
+            alert("Nouvel article créé !")
+            window.location = "/welcome"
         })
         .catch(error => {
             console.log(error)
@@ -39,7 +39,7 @@ function Post() {
                         </div>
                         <div className="form-group">
                             <label htmlFor="lastname">Article</label>
-                            <textarea type="text" rows="5" style={{resize: 'none'}} className="form-control" id="article" {...register("content", { required: true })}  placeholder="Votre article ici"></textarea>
+                            <textarea type="text" rows="5" style={{resize: "none"}} className="form-control" id="article" {...register("content", { required: true })}  placeholder="Votre article ici"></textarea>
                             <small id="emailHelp" className="form-text text-muted">champs requis</small>
                         </div>
                         <div className="mb-3">

@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
         if(content){
             next();
         } else {
-            res.status(402).json({ message: 'Post incorrect' });
+            res.status(402).json({ message: "Post incorrect" });
         }
     } 
     catch (error) {

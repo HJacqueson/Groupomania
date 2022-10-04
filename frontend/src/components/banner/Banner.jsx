@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link} from "react-router-dom";
 
 function Banner() {
     return(
@@ -11,13 +11,13 @@ function Banner() {
                 <div id="navbarNav" className="collapse navbar-collapse justify-content-end">
                     <ul  className=" navbar-nav">
                         <li className="nav-item active">
-                            <Link className='nav-link' to='/welcome'>Fil d'Actualité</Link>
+                            <Link className="nav-link" to="/welcome">Fil d"Actualité</Link>
                         </li>
                         <li className="nav-item active">
-                            <Link className='nav-link' to='/profile'>Mon Profil</Link>
+                            <Link className="nav-link" to="/profile">Mon Profil</Link>
                         </li>
                         <li className="nav-item active">
-                            <Link className='nav-link' to='/logout'>Se déconnecter</Link>
+                            <Link className="nav-link" to="/logout">Se déconnecter</Link>
                         </li>
                     </ul>
                 </div>
