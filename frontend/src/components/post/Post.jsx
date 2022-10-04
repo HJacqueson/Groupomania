@@ -4,12 +4,15 @@ import axios from "axios"
 function Post() {
     const { register, handleSubmit } = useForm()
     let mytoken = localStorage.getItem("token")
+    let firstname = localStorage.getItem("firstname")
+    console.log(firstname)
+    let lastname = localStorage.getItem("lastname")
 
     const onSubmit = post => {
         console.log(post.imageUrl)
         const newPost = new FormData()
-        newPost.append("imageUrl", post.imageUrl[0])
-        newPost.append("post", JSON.stringify(post))
+        newPost.append("image", post.imageUrl[0])
+        newPost.append("post", JSON.stringify({content:post.content, title:post.title, firstname:firstname, lastname:lastname}))
         console.log(post)
         axios.post("http://localhost:4200/api/posts", newPost,
             {
@@ -19,7 +22,7 @@ function Post() {
             console.log(res.status)
             console.log(res.data)
             alert("Nouvel article créé !")
-            window.location = "/welcome"
+            window.location("/welcome")
         })
         .catch(error => {
             console.log(error)

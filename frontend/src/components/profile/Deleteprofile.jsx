@@ -2,17 +2,19 @@ import {useForm} from"react-hook-form"
 import axios from"axios" 
 
 function Deleteprofile(){
+    let userId = localStorage.getItem("userId")
     let mytoken = localStorage.getItem("token") 
     const { register, handleSubmit } = useForm() 
 
     const onSubmit = user => {
+        console.log(user)
         axios.post("http://localhost:4200/api/auth/login", user,
         {
             headers: {"Content-Type":"application/json"}
         })
-        .then(() => {
-            axios.delete("http://localhost:4200/api/users", {
-                data: {id:user.id},
+        .then(res => {
+            console.log(res.status)
+            axios.delete("http://localhost:4200/api/users/"+userId, {
                 headers: {"Authorization": `Bearer ${mytoken}`}
             })
                 .then(() => {

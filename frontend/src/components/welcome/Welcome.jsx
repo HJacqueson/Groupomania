@@ -1,15 +1,15 @@
+import "./welcome.css"
 import axios from "axios";
 import {useState, useEffect} from "react"
-import Comment from "../comment/Comment"
 import Profil from "../profile/Profile"
 import Deletepost from "../post/Deletepost"
 
 
 function Welcome(props) {
     const [items, setItems] = useState()
-    // const [deleteItem,updateDeleteItem] = useState(0);
     let mytoken = localStorage.getItem("token")
-    let id = localStorage.getItem("id")
+    let userId = localStorage.getItem("userId")
+    console.log(userId)
     let role = localStorage.getItem("role")
  
     useEffect(() => {
@@ -20,10 +20,11 @@ function Welcome(props) {
         })
         .then(res => {
             console.log(res.status)
+            console.log(res.data)
             setItems(res.data)
         })
         .catch(error => console.log(error))
-    },[])
+    },)
   
     const deleteItem = postId => {
         let newItems = [...items]
@@ -50,12 +51,11 @@ function Welcome(props) {
                             <div className="card-body"> 
                                 <h5 className="card-title" style={{color:"black"}}>{post.title} </h5>
                                 <p className="card-text">{post.content}.</p>
-                                <img className="card-img-top" src={post.imageUrl} alt="Card cap"></img>
-                                {/* <p>posté par {post.firstname} {post.lastname} le {post.createdAt.split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]}</p> */}
+                                {post.imageUrl !== undefined && (<img className="card-img-top" src={post.imageUrl} alt="Card cap"></img>)}
+                                <p>posté par {post.firstname} {post.lastname} le {post.createdAt.split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]}</p>
                                 {
-                                (id === post.userId || role === "ADMIN") && (<Deletepost  postId={post.id} deleteItem={deleteItem} />)
+                                (userId === post.userId || role === "ADMIN") && (<Deletepost  postId={post._id} deleteItem={deleteItem} />)
                                 }
-                                <Comment postId={post.id} props={props} />
                             </div>
                         </div>
                         

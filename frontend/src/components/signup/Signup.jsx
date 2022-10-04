@@ -20,7 +20,7 @@ function Signup () {
             console.log(res.status)
             console.log(res.data)
             alert("Nouveau Compte créé ! Veuillez vous connecter")
-            window.location = "/login"
+            window.location = "/"
             
         })
         .catch(error => {

@@ -4,7 +4,7 @@ const auth = require("../middleware/auth");
 
 
 
-exports.createPost = (req, res, next) => {     //création d"un post
+exports.createPost = (req, res, next) => {     //création d'un post
   console.log(req.body);
 //   return res.send(req.body);
   const userId = req.auth.userId;
@@ -31,17 +31,17 @@ exports.createPost = (req, res, next) => {     //création d"un post
   }
 };
 
-exports.getAllPosts = (req, res, next) => {     //obtention de l"ensemble des posts de tous les utilisateurs
+exports.getAllPosts = (req, res, next) => {     //obtention de l'ensemble des posts de tous les utilisateurs
     Post.find({order: ["createdAt", "DESC"]})
       .then(posts => res.status(200).json(posts))
 };
 
-exports.getOnePost = (req, res, next) => {      //obtention d"un post d"un utilisateur
+exports.getOnePost = (req, res, next) => {      //obtention d"un post d'un utilisateur
     Post.findOne({ _id: req.params.id })
       .then(post => res.status(200).json(post))
 };
 
-exports.getPostsByUserId = (req, res, next) => {        //obtention de tous les posts d"un utilisateur
+exports.getPostsByUserId = (req, res, next) => {        //obtention de tous les posts d'un utilisateur
     Post.find({where: {userId: req.params.id}, order: ["createdAt", "DESC"]})
     .then(posts => {res.status(200).json({data: posts});})
 };
@@ -79,13 +79,15 @@ exports.getPostsByUserId = (req, res, next) => {        //obtention de tous les 
 //   }
 // };
 
-exports.deletePost = (req, res, next) => {      //suppression d"un post
+exports.deletePost = (req, res, next) => {      //suppression d'un post
+  console.log(req.body)
   Post.findOne({ _id: req.params.id})
       .then(post => {
-          if (post.userId != req.auth.userId) {
-              res.status(401).json({message: "Not authorized"});
-          } else {
-              const image = req.file.filename
+        console.log(post)
+          // if (post.userId != req.auth.userId) {
+          //     res.status(401).json({message: "Not authorized"});
+          // } else {
+              const image = post.imageUrl
               if (image != null) {
                 const filename = post.imageUrl.split("/images/post/")[1];
                 fs.unlink(`images/post/${filename}`, () => {
@@ -96,7 +98,7 @@ exports.deletePost = (req, res, next) => {      //suppression d"un post
                 Post.deleteOne({_id: req.params.id})
                     .then(() => { res.status(200).json({message: "Objet supprimé !"})})
               }
-          }
+          // }
       })
 };
 

@@ -5,27 +5,41 @@ import Deleteprofile from "./Deleteprofile"
 function Modifyprofile(){
     let firstname = localStorage.getItem("firstname")
     let lastname = localStorage.getItem("lastname")
+    let userId = localStorage.getItem("userId")
     let mytoken = localStorage.getItem("token")
     
     const { register, handleSubmit } = useForm()
     
     const onSubmit = user => {
-        console.log(user.lastname)
+        console.log(user)
 
-        const profilePicture = new FormData()
-        profilePicture.append("profilePicture", user.profilePicture[0])
-        profilePicture.append("user", JSON.stringify(user))
+        const updateProfile = new FormData()
+        updateProfile.append("image", user.profilePicture[0])
+        updateProfile.append("user", JSON.stringify({
+            lastname:user.lastname, 
+            firstname:user.firstname, 
+            email:user.email, 
+            password:user.password 
+        }))
 
-        axios.put("http://localhost:4200/api/users", profilePicture ,{
+        axios.put("http://localhost:4200/api/users/"+userId, updateProfile ,{
                 headers: {
                     "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${mytoken}`
                 }})
             .then(() => {
-                localStorage.setItem("firstname", user.firstname)
-                localStorage.setItem("lastname", user.lastname)
-                localStorage.setItem("profilePicture",user.profilePicture)
-                window.location="/welcome"
+                axios.get("http://localhost:4200/api/users/"+userId, {
+                    headers: { "Authorization": `Bearer ${mytoken}`}
+                    })
+                    .then((res) => {
+                        console.log(res.data)
+                        localStorage.setItem("firstname", user.firstname)
+                        localStorage.setItem("lastname", user.lastname)
+                        localStorage.setItem("profilePicture", res.data.profilePicture)
+                        window.location="/welcome"
+                    })
+                    .catch(error => console.log(error))
+                
             })
             .catch(error => console.log(error))
 

@@ -1,5 +1,7 @@
+import "./profile.css"
 import { useNavigate } from "react-router-dom"
 import e404 from "../../assets/404.jpg"
+
 
 function Profile(){
     let userId = localStorage.getItem("userId")
@@ -12,7 +14,7 @@ function Profile(){
         userId ?
         <div className ="container">
             <div className="row mt-5 card profil">
-                <div className="col-10 mt-3">
+                <div className="col-10 mt-3 imgcroper">
                     <img className="imgProfil" alt="portrait" src={profilePicture} ></img>
                 </div>
                 <h4 className="name">Bonjour {firstname} {lastname}</h4>
