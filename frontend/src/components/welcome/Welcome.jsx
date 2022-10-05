@@ -40,18 +40,18 @@ function Welcome(props) {
         )
     } else {
         return (
-            <div className="container"> 
+            <div className="container p-0 m-0"> 
                 <Profil props={props} />
-                <div className="row">
+                <div className="row justify-content-center">
                     { items &&
                     items.map( post => (
                         
-                    <div key={post.id}>
+                    <div key={post.id} className="col-8 pb-5">
                         <div className="card mt-3" >
                             <div className="card-body"> 
-                                <h5 className="card-title" style={{color:"black"}}>{post.title} </h5>
-                                <p className="card-text">{post.content}.</p>
-                                {post.imageUrl !== undefined && (<img className="card-img-top" src={post.imageUrl} alt="Card cap"></img>)}
+                                <h5 className="card-title bg-light mb-0 p-2 border border-bottom-0 border-danger" style={{color:"black"}}>{post.title} </h5>
+                                <p className="card-text bg-light p-2 border border-top-0 border-danger">{post.content}.</p>
+                                {post.imageUrl !== undefined && (<img className="card-img-top d-block mx-auto pb-5" src={post.imageUrl} alt="Card cap"></img>)}
                                 <p>posté par {post.firstname} {post.lastname} le {post.createdAt.split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]}</p>
                                 {
                                 (userId === post.userId || role === "ADMIN") && (<Deletepost  postId={post._id} deleteItem={deleteItem} />)

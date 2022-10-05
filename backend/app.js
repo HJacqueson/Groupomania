@@ -5,7 +5,6 @@ const mongoose = require("mongoose");   //utilisation de la base données mongoD
 const postRoutes = require("./routes/post");    //routes des posts
 const userRoutes = require("./routes/user");    //routes des utilisateurs
 const authRoutes = require("./routes/auth");    //routes d"authentification
-const commentRoutes = require("./routes/comment")   //routes des commentaires
 const path = require("path");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
@@ -32,6 +31,6 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/comments", commentRoutes);
+
 
 app.listen(process.env.PORT, () => console.log("Serveur lancé correctement"))

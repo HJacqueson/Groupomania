@@ -39,6 +39,7 @@ function App() {
                 <Route path="/profile" element={<Footer />} />
                 <Route path="/logout" element={<Footer />} />
                 <Route path="/post" element={<Footer />} />
+                <Route path="/modifyprofile" element={<Footer />} />
             </Routes>
         </Router>
     )

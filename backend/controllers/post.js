@@ -6,10 +6,7 @@ const auth = require("../middleware/auth");
 
 exports.createPost = (req, res, next) => {     //création d'un post
   console.log(req.body);
-//   return res.send(req.body);
   const userId = req.auth.userId;
-//   console.log(userId);
-//   return res.send(req.body);
   const postObject = JSON.parse(req.body.post);
   console.log(postObject);
   delete postObject._id;
@@ -45,39 +42,6 @@ exports.getPostsByUserId = (req, res, next) => {        //obtention de tous les 
     Post.find({where: {userId: req.params.id}, order: ["createdAt", "DESC"]})
     .then(posts => {res.status(200).json({data: posts});})
 };
-
-// exports.modifyPost = (req, res, next) => {      //modification d"un post
-//   let image = req.file.filename
-//   if(image != null ) {
-//     const postObject = req.file ? {
-//         ...JSON.parse(req.body.post),
-//         imageUrl: `${req.protocol}://${req.get("host")}/images/post/${req.file.filename}`
-//     } : { ...req.body };
-//     delete postObject._userId;
-//     Post.findOne({_id: req.params.id})
-//         .then((post) => {
-//             if (post.userId != req.auth.userId) {
-//                 res.status(401).json({ message : "Not authorized"});
-//             } else {
-//                 Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
-//                 .then(() => res.status(200).json({message : "Objet modifié!"}))
-//             }
-//         })
-//    } else {
-//     const postObject = req.file ? {
-//         ...JSON.parse(req.body.post)} : { ...req.body };
-//     delete postObject._userId;
-//     Post.findOne({_id: req.params.id})
-//         .then(post => {
-//             if (post.userId != req.auth.userId) {
-//                 res.status(401).json({ message : "Not authorized"});
-//             } else {
-//                 Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
-//                 .then(() => res.status(200).json({message : "Objet modifié!"}))
-//             }
-//         })
-//   }
-// };
 
 exports.deletePost = (req, res, next) => {      //suppression d'un post
   console.log(req.body)

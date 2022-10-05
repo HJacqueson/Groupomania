@@ -1,5 +1,4 @@
 const User = require("../models/User"); 
-const Comment = require("../models/Comment");
 const Post = require("../models/Post");
 const fs = require("fs");       //module de gestion de fichier
 
@@ -17,6 +16,7 @@ exports.modifyUser = (req, res, next) => {      //modification d"un Utilisateur
             if (user.id != req.auth.userId) {
                 res.status(401).json({ message : "Not authorized"});
             } else {
+                console.log(user)
                 User.updateOne({ _id: req.params.id}, { ...userObject, _id: req.params.id})
                 .then(() => res.status(200).json({message : "Utilisateur modifié!"}))
             }

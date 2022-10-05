@@ -15,13 +15,15 @@ function Profile(){
         <div className ="container">
             <div className="row mt-5 card profil">
                 <div className="col-10 mt-3 imgcroper">
-                    <img className="imgProfil" alt="portrait" src={profilePicture} ></img>
+                    <img className="imgProfil bg-light pl-0" alt="portrait" src={profilePicture} ></img>
                 </div>
                 <h4 className="name">Bonjour {firstname} {lastname}</h4>
             </div>
             <div className="row">
-                <div className="col-2"><button onClick={() =>{ navigate("/post")}} type="submit" className="btn btn-light mt-5">Poster un article</button></div>
-                <div className="col-2"><button onClick={() =>{ navigate("/modifyprofile")}} type="submit" className="btn btn-light mt-5">Modifier mon profil</button></div>
+                <div className="btn-toolbar justify-content-center">
+                    <button onClick={() =>{ navigate("/post")}} type="submit" className="shadow-lg btn btn-dark mt-5 mx-5">Poster un article</button>                
+                    <button onClick={() =>{ navigate("/modifyprofile")}} type="submit" className="shadow-lg btn btn-dark mt-5">Modifier mon profil</button>
+                </div>
             </div>        
         </div>  
         : <div><img src={e404} className="mb-5 img-fluid" alt="error"></img></div>

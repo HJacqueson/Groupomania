@@ -30,7 +30,7 @@ function Deleteprofile(){
 
     return (
         <div>
-            <div>
+            <div className="col-md-6 mb-5">
                 <h5>Supprimer le compte</h5>
                 <p>Attention cette action est irréversible !</p>
                 <form onSubmit={handleSubmit(onSubmit)}>

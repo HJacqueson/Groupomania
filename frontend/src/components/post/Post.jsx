@@ -31,8 +31,9 @@ function Post() {
 
     return (
         <div className="container">
-            <h3 className="mt-5">Ajouter un article</h3>
-            <div className="row">
+            
+            <div className="row postform">
+                <h3 className="mt-5">Ajouter un article</h3>
                 <div className="col-md-6">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-group">

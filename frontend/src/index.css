@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #FFD7D7;
+  background-color: #FD2D01;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -13,6 +13,10 @@ code {
     monospace;
 }
 
-.row {
-  width: 100%
+.container {
+  min-width: 100%;
+} 
+
+.btn {
+  background-color: #4E5166;
 }
