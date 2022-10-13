@@ -3,7 +3,6 @@ const router = express.Router();        //utilisation du créateur de route
 const auth = require("../middleware/auth");     //utilisation du middleware auth
 const multer = require("../middleware/multer-config");      //utilisation du middleware multer
 const limited = require("../middleware/limite-req");        //utilisation du middleware de limitation de requête
-
 const postCtrl = require("../controllers/post");        //utilisation du contrôleur post
 
 router.post("/", auth, limited, multer, postCtrl.createPost)     //étape à valider pour la création d"un post

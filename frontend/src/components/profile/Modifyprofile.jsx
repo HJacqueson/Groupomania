@@ -51,9 +51,9 @@ function Modifyprofile(){
 
     return (
         <div>
-            <div className="container mt-5">
-                <div className="row modidel">
-                    <div className="col-md-6 mb-5">
+            <div className="container mt-5 pb-3">
+                <div className="row modidel m-5">
+                    <div className="col-md-5  mb-5 mt-5">
                         <h5>Modification de vos données</h5>
                             <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
@@ -66,26 +66,11 @@ function Modifyprofile(){
                                 <input type="text" className="form-control" id="firstname" {...register("firstname", { required: true })}  placeholder={firstname}></input>
                                 <small id="emailHelp" className="form-text text-muted">champs requis</small>
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="role">Rôle</label>
-                                <input type="text" className="form-control" id="role" {...register("role", { required: true })}  placeholder={firstname}></input>
-                                <small id="emailHelp" className="form-text text-muted">champs requis</small>
-                            </div>
-                            {/* <div className="form-group">
-                                <label htmlFor="email">Email</label>
-                                <input type="email" className="form-control" id="email1" {...register("email", { required: true })}  placeholder="*****@*******"></input>
-                                <small id="emailHelp" className="form-text text-muted">champs requis</small>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="password">Mot de passe</label>
-                                <input type="password" className="form-control" id="password1" {...register("password", { required: true })} placeholder="********"></input>
-                                <small id="emailHelp" className="form-text text-muted">minimum 8 caractères avec au moins 1 majuscule 1 minuscule 1 caractère.</small>
-                            </div> */}
                             <div className="mb-3">
                                 <label htmlFor="formFile" className="form-label" >Photo de profil</label>
                                 <input className="form-control" type="file" {...register("profilePicture", { required: false })} id="formFile"></input>
                             </div>
-                            <button type="submit" className="btn btn-warning mt-3">Modifier mon profil</button>
+                            <button type="submit" className="btn btn-dark mt-3">Modifier mon profil</button>
                         </form>
                     </div>
                     <div className="col-md-6">

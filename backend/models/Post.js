@@ -8,9 +8,7 @@ const postSchema = mongoose.Schema({        //schéma post
     content:{"type": String, required: true},
     imageUrl:{"type": String, required: false},
     likes:{"type": Number, default: 0},
-    dislikes:{"type": Number, default: 0},
     usersLiked:{"type": [String], index: true},
-    usersDisliked:{"type": [String], index: true}
 })
 
 postSchema.set("timestamps", true);      //Ajout de date et heure

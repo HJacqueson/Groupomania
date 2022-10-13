@@ -44,60 +44,57 @@ exports.getPostsByUserId = (req, res, next) => {        //obtention de tous les 
 };
 
 exports.deletePost = (req, res, next) => {      //suppression d'un post
-  console.log(req.body)
+  console.log(req.params.id)
   Post.findOne({ _id: req.params.id})
       .then(post => {
         console.log(post)
-          // if (post.userId != req.auth.userId) {
-          //     res.status(401).json({message: "Not authorized"});
-          // } else {
-              const image = post.imageUrl
-              if (image != null) {
-                const filename = post.imageUrl.split("/images/post/")[1];
-                fs.unlink(`images/post/${filename}`, () => {
-                Post.deleteOne({_id: req.params.id})
-                    .then(() => { res.status(200).json({message: "Objet supprimé !"})})
-                });
-              } else {
-                Post.deleteOne({_id: req.params.id})
-                    .then(() => { res.status(200).json({message: "Objet supprimé !"})})
-              }
-          // }
+            const image = post.imageUrl
+            if (image != null) {
+              const filename = post.imageUrl.split("/images/post/")[1];
+              fs.unlink(`images/post/${filename}`, () => {
+              Post.deleteOne({_id: req.params.id})
+                  .then(() => { res.status(200).json({message: "Objet supprimé !"})})
+              });
+            } else {
+              Post.deleteOne({_id: req.params.id})
+                  .then(() => { res.status(200).json({message: "Objet supprimé !"})})
+            }
       })
 };
 
 exports.likePost = (req, res, next) => {        //like dislike d"un post
+  console.log(req.params.id)
   Post.findOne({_id: req.params.id})
   .then(async post => {
+    console.log(post)
       if (!post){
           res.status(404).json({message: "Le post n\"existe pas"});
       }else{
-          const userId = req.body.userId;
-          const like = req.body.like;
+          const userId = req.auth.userId;
+          console.log(userId)
+          console.log(post.usersLiked)
+          if (post.usersLiked.find(element => element === userId)){
+            Object.defineProperty(post, "likes", {value: 1})
+          }
+          const like = post.likes;
           let usersLiked = post.usersLiked;
-          let usersDisliked = post.usersDisliked;
+          console.log(like)
           switch (like) {
-              case 1:
-                  usersLiked.addToSet(userId);
-                  break;
               case 0:
-                  usersLiked = usersLiked.filter(element => element !== userId);
-                  usersDisliked = usersDisliked.filter(element => element !== userId);
+                  usersLiked.addToSet(userId);
+                  console.log(usersLiked)
                   break;
-              case -1:
-                  usersDisliked.addToSet(userId);
+              case 1:
+                  usersLiked.pull(userId)
                   break;
               default:
-                  res.status(402).send({message: "Valeur inconnue"})
+                  res.status(400).send({message: "Valeur inconnue"})
                   break;
           }
-          let likes = usersLiked.length;
-          let dislikes = usersDisliked.length;
+          let likes = 0;
           await post.updateOne({
               usersLiked: usersLiked,
-              usersDisliked: usersDisliked,
-              likes: likes,
-              dislikes: dislikes
+              likes: likes
           });
           res.status(200).send({message: "Modification like effectué"})
       } 

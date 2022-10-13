@@ -1,16 +1,19 @@
-import "./welcome.css"
 import axios from "axios";
 import {useState, useEffect} from "react"
 import Profil from "../profile/Profile"
 import Deletepost from "../post/Deletepost"
+import Badge from 'react-bootstrap/Badge'
 
 
 function Welcome(props) {
     const [items, setItems] = useState()
+    const [delItem, setDelitem] = useState(0)
+    const [like, setLike] = useState()
     let mytoken = localStorage.getItem("token")
     let userId = localStorage.getItem("userId")
     console.log(userId)
     let role = localStorage.getItem("role")
+    
  
     useEffect(() => {
         axios.get("http://localhost:4200/api/posts", {
@@ -24,18 +27,38 @@ function Welcome(props) {
             setItems(res.data)
         })
         .catch(error => console.log(error))
-    },)
+    },[mytoken, delItem, like])
   
     const deleteItem = postId => {
         let newItems = [...items]
         newItems = newItems.filter(post => post.id !== postId)
-        setItems(newItems)
-    } 
+        setDelitem(newItems)
+    }
+
+
+    const likeSubmit = (post) => {
+        console.log(post)
+        console.log(post.usersLiked)
+
+        console.log(post)
+        axios.post("http://localhost:4200/api/posts/"+post._id+"/like", post, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Authorization": `Bearer ${mytoken}` }
+        })
+        .then((res) => {
+            console.log(res.data)
+            setLike(post)
+        })
+        .catch(error => {
+            console.log(error)
+        }) 
+    }
 
     if (items === undefined) {
         return (
             <div className="container">
-                <div className="mt-5">Chargement...</div>
+                <div className="mt-5 p-5">Chargement...</div>
             </div>
         )
     } else {
@@ -46,16 +69,21 @@ function Welcome(props) {
                     { items &&
                     items.map( post => (
                         
-                    <div key={post.id} className="col-8 pb-5">
+                    <div key={post.id} className="col-8 pb-5 mb-5">
                         <div className="card mt-3" >
-                            <div className="card-body"> 
-                                <h5 className="card-title bg-light mb-0 p-2 border border-bottom-0 border-danger" style={{color:"black"}}>{post.title} </h5>
-                                <p className="card-text bg-light p-2 border border-top-0 border-danger">{post.content}.</p>
-                                {post.imageUrl !== undefined && (<img className="card-img-top d-block mx-auto pb-5" src={post.imageUrl} alt="Card cap"></img>)}
-                                <p>posté par {post.firstname} {post.lastname} le {post.createdAt.split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]}</p>
+                            <div className="card-body bg-light p-0 m-3 shadow"> 
+                                <h5 className="card-title mb-0 p-2 rounded-top" style={{color:"black"}}>{post.title} </h5>
+                                <p className="card-text mb-0 p-2">{post.content}.</p>
+                                {post.imageUrl !== undefined && (<img className="card-img-top d-block mx-auto mw-100" src={post.imageUrl} alt="Card cap"></img>)}
+                                <p className="bg-light m-0 p-1">posté par {post.firstname} {post.lastname} le {post.createdAt.split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]}</p>
                                 {
-                                (userId === post.userId || role === "ADMIN") && (<Deletepost  postId={post._id} deleteItem={deleteItem} />)
+                                (userId === post.userId || role === "ADMIN") && (<Deletepost  postId={post._id} props={props} deleteItem={deleteItem}/>)
                                 }
+                        <button className="bg-light m-3 mt-0 rounded-pill" onClick={() => likeSubmit(post)}>
+                            <Badge  pill variant="danger">
+                                J'aime : {post.usersLiked.length}
+                            </Badge>
+                        </button>
                             </div>
                         </div>
                         

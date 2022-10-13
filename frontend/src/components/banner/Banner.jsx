@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 function Banner() {
     return(
-        <nav className="navbar navbar-expand-md fixed-top navbar-light bg-light ">
+        <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark shadow">
             <div className="container">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

@@ -17,8 +17,8 @@ function Deletepost({postId, deleteItem}) {
     }
 
     return (
-        <div>
-            <button className="shadow btn btn-dark mt-3" onClick={() => delItem()}>Supprimer l'article</button>
+        <div className="bg-light p-3 rounded-bottom">
+            <button className="shadow btn btn-dark" onClick={() => delItem()}>Supprimer l'article</button>
         </div>
     )
 }

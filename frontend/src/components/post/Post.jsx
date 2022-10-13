@@ -22,7 +22,7 @@ function Post() {
             console.log(res.status)
             console.log(res.data)
             alert("Nouvel article créé !")
-            window.location("/welcome")
+            window.location="/welcome"
         })
         .catch(error => {
             console.log(error)
@@ -33,7 +33,7 @@ function Post() {
         <div className="container">
             
             <div className="row postform">
-                <h3 className="mt-5">Ajouter un article</h3>
+                <h3 className="mt-5 pt-5">Ajouter un article</h3>
                 <div className="col-md-6">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-group">
@@ -50,7 +50,7 @@ function Post() {
                             <label htmlFor="formFile" className="form-label" >Telecharger une photo</label>
                             <input className="form-control" type="file" {...register("imageUrl", { required: false })} id="formFile"></input>
                         </div>
-                        <button type="submit" className="btn btn-dark mt-3">Poster</button>
+                        <button type="submit" className="btn btn-dark mt-3 mb-5">Poster</button>
                     </form>
                 </div>
             </div>

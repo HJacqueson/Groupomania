@@ -1,9 +1,18 @@
 .imgProfil {
-    display: inline;
     margin: 0 auto;
     height: 100%;
     width: auto;
 }
+
+.logoGroupomania {
+    background: #FFD7D7;
+    display: inline;
+    /* float: right; */
+
+    /* margin: 0 auto; */
+    max-height: 100%;
+    width: 500px;
+} 
 .imgcroper {
     width: 100px;
     height: 100px;
@@ -22,6 +31,8 @@
 .card {
     background-color: #FFD7D7;
     padding-top: 10px;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .postform {

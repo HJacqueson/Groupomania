@@ -1,9 +1,9 @@
 function Footer(){
     return (
         <div className="container mt-4">
-            <div className="row navbar-light bg-light fixed-bottom">
+            <div className="row navbar-dark bg-dark fixed-bottom">
                 <div className="col-md-8">
-                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                         <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavFooter" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -19,7 +19,7 @@ function Footer(){
                         </div>
                     </nav>
                 </div>
-                <div className="col-md-4 d-flex align-items-center">
+                <div className="col-md-4 d-flex p-3 p-md-2 align-items-center text-light">
                     Copyright © 2022, All Right Reserved Hervé Jacqueson
                 </div>   
             </div>
