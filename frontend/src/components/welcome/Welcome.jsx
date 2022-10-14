@@ -48,7 +48,7 @@ function Welcome(props) {
         })
         .then((res) => {
             console.log(res.data)
-            setLike(post)
+            setLike(post.likes)
         })
         .catch(error => {
             console.log(error)
