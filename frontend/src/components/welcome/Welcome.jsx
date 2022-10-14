@@ -35,7 +35,6 @@ function Welcome(props) {
         setDelitem(newItems)
     }
 
-
     const likeSubmit = (post) => {
         console.log(post)
         console.log(post.usersLiked)
@@ -75,7 +74,7 @@ function Welcome(props) {
                                 <h5 className="card-title mb-0 p-2" style={{color:"black"}}>{post.title} </h5>
                                 <p className="card-text mb-0 p-2">{post.content}.</p>
                                 {post.imageUrl !== undefined && (<img className="card-img-top d-block mx-auto mw-100" src={post.imageUrl} alt="Card cap"></img>)}
-                                <p className="bg-light m-0 p-1">posté par {post.firstname} {post.lastname} le {post.createdAt.split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]}</p>
+                                <p className="bg-light m-0 p-1">posté par {post.firstname} {post.lastname} le {post.createdAt.split("-")[2].split("T")[0].split(".")[0]}/{post.createdAt.split("-")[1].split("T")[0].split(".")[0]}/{post.createdAt.split("-")[0].split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]} (UTC) </p>
                                 {
                                 (userId === post.userId || role === "ADMIN") && (<Deletepost  postId={post._id} props={props} deleteItem={deleteItem}/>)
                                 }

@@ -1,9 +1,8 @@
-import "./banner.css"
 import {Link} from "react-router-dom";
 
 function Banner() {
     return(
-        <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark shadow">
+        <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark shadow fs-5 fw-bold">
             <div className="container">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +20,6 @@ function Banner() {
                 </div>
             </div>
         </nav>
-
     )
 }
 

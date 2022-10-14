@@ -1,4 +1,3 @@
-import "./profile.css"
 import { useNavigate } from "react-router-dom"
 import e404 from "../../assets/404.jpg"
 import logo from "../../assets/icon-left-font.png"

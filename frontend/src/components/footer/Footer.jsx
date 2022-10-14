@@ -3,7 +3,7 @@ function Footer(){
         <div className="container mt-4">
             <div className="row navbar-dark bg-dark fixed-bottom">
                 <div className="col-md-8">
-                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fs-5 fw-bold p-2 pb-0">
                         <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavFooter" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -24,8 +24,8 @@ function Footer(){
                 </div>   
             </div>
         </div>
-        
     )
 }
 
 export default Footer
+

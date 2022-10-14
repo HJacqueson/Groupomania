@@ -32,7 +32,7 @@ function Post() {
     return (
         <div className="container">
             
-            <div className="row postform">
+            <div className="row p-3" style={{backgroundColor: "#FFD7D7"}}>
                 <h3 className="mt-5 pt-5">Ajouter un article</h3>
                 <div className="col-md-6">
                     <form onSubmit={handleSubmit(onSubmit)}>

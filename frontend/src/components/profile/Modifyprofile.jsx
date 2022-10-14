@@ -16,8 +16,8 @@ function Modifyprofile(){
         const updateProfile = new FormData()
         updateProfile.append("image", user.profilePicture[0])
         updateProfile.append("user", JSON.stringify({
-            lastname:user.lastname, 
             firstname:user.firstname, 
+            lastname:user.lastname, 
             role:user.role 
         }))
 
@@ -52,7 +52,7 @@ function Modifyprofile(){
     return (
         <div>
             <div className="container mt-5 pb-3">
-                <div className="row modidel m-5">
+                <div className="row p-3 m-5" style={{backgroundColor: "#FFD7D7"}}>
                     <div className="col-md-5  mb-5 mt-5">
                         <h5>Modification de vos données</h5>
                             <form onSubmit={handleSubmit(onSubmit)}>

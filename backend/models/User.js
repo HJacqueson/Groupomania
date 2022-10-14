@@ -2,8 +2,8 @@ const mongoose = require("mongoose");     //utilisation de la base de données m
 const uniqueValidator = require("mongoose-unique-validator");     //plugin de validation d"utilisateur unique
 
 const userSchema = mongoose.Schema({    //schéma utilsateur
-  lastname : { "type": String, required: true},
   firstname : { "type": String, required: true},
+  lastname : { "type": String, required: true},
   email: { "type": String, unique: true, required: true },
   password: { "type": String, required: true } ,
   role : {"type": String, default:"SALARIE"},
