@@ -2,7 +2,6 @@ const express = require("express");     //utilisation d"express
 const router = express.Router();        //utilisation du créateur de route
 const auth = require("../middleware/auth");     //utilisation du middleware auth
 const multer = require("../middleware/multer-config");      //utilisation du middleware multer
-
 const userCtrl = require("../controllers/user");        //utilisation du contrôleur user
 const postCtrl = require("../controllers/post");        //utilisation du contrôleur post
 

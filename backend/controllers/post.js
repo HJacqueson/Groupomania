@@ -72,29 +72,26 @@ exports.likePost = (req, res, next) => {        //like dislike d"un post
       }else{
           const userId = req.auth.userId;
           console.log(userId)
+          let alreadyliked = false
           console.log(post.usersLiked)
           if (post.usersLiked.find(element => element === userId)){
-            Object.defineProperty(post, "likes", {value: 1})
+            alreadyliked = true
           }
-          const like = post.likes;
-          let usersLiked = post.usersLiked;
-          console.log(like)
-          switch (like) {
-              case 0:
-                  usersLiked.addToSet(userId);
-                  console.log(usersLiked)
-                  break;
-              case 1:
-                  usersLiked.pull(userId)
-                  break;
-              default:
-                  res.status(400).send({message: "Valeur inconnue"})
-                  break;
+          console.log(alreadyliked)
+          let usersLiked = post.usersLiked
+          let like = post.likes
+          if (alreadyliked === true){
+            usersLiked.pull(userId)
+            like -= 1
+          } else {
+            usersLiked.addToSet(userId)
+            console.log(usersLiked)
+            like += 1
+            console.log(like)
           }
-          let likes = 0;
           await post.updateOne({
               usersLiked: usersLiked,
-              likes: likes
+              likes: like
           });
           res.status(200).send({message: "Modification like effectué"})
       } 

@@ -14,15 +14,15 @@ function Profile(){
     return (
         userId ?
         <div className ="container p-0 m-0">
-            <div className="row mt-5 card profil">
-                <div className="col-12 col-md-6 mt-5 imgcroper shadow">
-                    <img className="imgProfil bg-light pl-0" alt="portrait" src={profilePicture} ></img>
+            <div className="row mt-5 d-flex flex-row justify-content-between" style={{backgroundColor: "#FFD7D7"}}>
+                <div className="col-12 col-md-6 m-5 mb-0 rounded-circle overflow-hidden shadow p-0" style={{width: "100px", height: "100px"}}>
+                    <img className="bg-light pl-0 h-100" alt="portrait" src={profilePicture} ></img>
                     
                 </div>
                 <div className="col-0 col-md-6">
-                    <img className="logoGroupomania mt-5 w-100" alt="logo" src={logo} ></img>
+                    <img className="mt-5 w-75 d-block mx-auto" alt="logo" src={logo} ></img>
                 </div>
-                <h4 className="name">Bonjour {firstname} {lastname}</h4>
+                <h4 className="p-5 pt-3 pb-0">Bonjour {firstname} {lastname}</h4>
             </div>
             <div className="row">
                 <div className="btn-toolbar justify-content-center">

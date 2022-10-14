@@ -70,9 +70,9 @@ function Welcome(props) {
                     items.map( post => (
                         
                     <div key={post.id} className="col-8 pb-5 mb-5">
-                        <div className="card mt-3" >
-                            <div className="card-body bg-light p-0 m-3 shadow"> 
-                                <h5 className="card-title mb-0 p-2 rounded-top" style={{color:"black"}}>{post.title} </h5>
+                        <div className="mt-3 p-2 rounded" style={{backgroundColor: "#FFD7D7"}}>
+                            <div className="card-body rounded bg-light p-0 m-3 shadow"> 
+                                <h5 className="card-title mb-0 p-2" style={{color:"black"}}>{post.title} </h5>
                                 <p className="card-text mb-0 p-2">{post.content}.</p>
                                 {post.imageUrl !== undefined && (<img className="card-img-top d-block mx-auto mw-100" src={post.imageUrl} alt="Card cap"></img>)}
                                 <p className="bg-light m-0 p-1">posté par {post.firstname} {post.lastname} le {post.createdAt.split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]}</p>
@@ -81,7 +81,7 @@ function Welcome(props) {
                                 }
                         <button className="bg-light m-3 mt-0 rounded-pill" onClick={() => likeSubmit(post)}>
                             <Badge  pill variant="danger">
-                                J'aime : {post.usersLiked.length}
+                                J'aime : {post.likes}
                             </Badge>
                         </button>
                             </div>
