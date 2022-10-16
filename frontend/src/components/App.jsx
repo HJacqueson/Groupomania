@@ -10,7 +10,7 @@ import Logout from "./logout/Logout"
 import Post from "./post/Post"
 import Footer from "./footer/Footer"
 import Modifyprofile from "./profile/Modifyprofile"
-
+import Modifypost from "./post/Modifypost"
 
 function App() {
     return(
@@ -20,6 +20,8 @@ function App() {
                 <Route path="/logout" element={<Banner />} />
                 <Route path="/post" element={<Banner />} />
                 <Route path="/modifyprofile" element={<Banner />} />
+                <Route path="/modifypost" element={<Banner />} />
+
             </Routes>
             <Routes>
                 <Route path="/" element={<Login />} />
@@ -28,6 +30,8 @@ function App() {
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/post" element={<Post />} />
                 <Route path="/modifyprofile" element={<Modifyprofile />} />
+                <Route path="/modifypost" element={<Modifypost />} />
+
             </Routes>
             <Routes>
                 <Route path="/" element={<Footer />} />
@@ -36,6 +40,8 @@ function App() {
                 <Route path="/logout" element={<Footer />} />
                 <Route path="/post" element={<Footer />} />
                 <Route path="/modifyprofile" element={<Footer />} />
+                <Route path="/modifypost" element={<Footer />} />
+
             </Routes>
         </Router>
     )

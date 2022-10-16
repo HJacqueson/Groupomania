@@ -15,8 +15,7 @@ function Profile(){
         <div className ="container p-0 m-0">
             <div className="row mt-5 d-flex flex-row justify-content-between" style={{backgroundColor: "#FFD7D7"}}>
                 <div className="col-12 col-md-6 m-5 mb-0 rounded-circle overflow-hidden shadow p-0" style={{width: "100px", height: "100px"}}>
-                    <img className="bg-light pl-0 h-100" alt="portrait" src={profilePicture} ></img>
-                    
+                    <a href="./modifyprofile"><img className="bg-light pl-0 h-100" alt="portrait" src={profilePicture} ></img></a> 
                 </div>
                 <div className="col-0 col-md-6">
                     <img className="mt-5 w-75 d-block mx-auto" alt="logo" src={logo} ></img>

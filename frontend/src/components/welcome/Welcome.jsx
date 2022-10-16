@@ -3,6 +3,7 @@ import {useState, useEffect} from "react"
 import Profil from "../profile/Profile"
 import Deletepost from "../post/Deletepost"
 import Badge from 'react-bootstrap/Badge'
+import { useNavigate } from "react-router-dom";
 
 
 function Welcome(props) {
@@ -13,6 +14,7 @@ function Welcome(props) {
     let userId = localStorage.getItem("userId")
     console.log(userId)
     let role = localStorage.getItem("role")
+    const navigate = useNavigate()
     
  
     useEffect(() => {
@@ -72,11 +74,19 @@ function Welcome(props) {
                         <div className="mt-3 p-2 rounded" style={{backgroundColor: "#FFD7D7"}}>
                             <div className="card-body rounded bg-light p-0 m-3 shadow"> 
                                 <h5 className="card-title mb-0 p-2" style={{color:"black"}}>{post.title} </h5>
-                                <p className="card-text mb-0 p-2">{post.content}.</p>
+                                <p className="card-text mb-0 p-2 pb-3 border-bottom">{post.content}.</p>
                                 {post.imageUrl !== undefined && (<img className="card-img-top d-block mx-auto mw-100" src={post.imageUrl} alt="Card cap"></img>)}
-                                <p className="bg-light m-0 p-1">posté par {post.firstname} {post.lastname} le {post.createdAt.split("-")[2].split("T")[0].split(".")[0]}/{post.createdAt.split("-")[1].split("T")[0].split(".")[0]}/{post.createdAt.split("-")[0].split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]} (UTC) </p>
+                                <p className="bg-light m-0 p-1">
+                                    posté par {post.firstname} {post.lastname} le {post.createdAt.split("-")[2].split("T")[0].split(".")[0]}/{post.createdAt.split("-")[1].split("T")[0].split(".")[0]}/{post.createdAt.split("-")[0].split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]} (UTC) 
+                                </p>
                                 {
-                                (userId === post.userId || role === "ADMIN") && (<Deletepost  postId={post._id} props={props} deleteItem={deleteItem}/>)
+                                (userId === post.userId || role === "ADMIN") && (<Deletepost postId={post._id} props={props} deleteItem={deleteItem}/>)
+                                }
+                                {
+                                (userId === post.userId || role === "ADMIN") && ( 
+                                <div className="bg-light p-3 rounded-bottom">
+                                    <button onClick={() =>{ localStorage.setItem("postId", post._id); localStorage.setItem("title", post.title); localStorage.setItem("content", post.content) ; navigate("/modifypost")}} type="submit" className="shadow-lg btn btn-dark">Modifier l'article</button>
+                                </div>)
                                 }
                         <button className="bg-light m-3 mt-0 rounded-pill" onClick={() => likeSubmit(post)}>
                             <Badge  pill variant="danger">

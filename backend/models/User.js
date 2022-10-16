@@ -7,7 +7,6 @@ const userSchema = mongoose.Schema({    //schéma utilsateur
   email: { "type": String, unique: true, required: true },
   password: { "type": String, required: true } ,
   role : {"type": String, default:"SALARIE"},
-  bio:{"type": String, required: false},
   profilePicture: {"type": String, default:"http://localhost:4200/images/profile.png"},
 });
 
