@@ -8,8 +8,7 @@ const postCtrl = require("../controllers/post");        //utilisation du contrô
 router.post("/", auth, limited, multer, postCtrl.createPost)     //étape à valider pour la création d"un post
 router.get("/", auth, postCtrl.getAllPosts);        //étape à valider pour l"obtention de l"ensemble des posts
 router.get("/:id", auth, postCtrl.getOnePost);      //étape à valider pour l"obtention d"un post
-// router.put("/:id", auth, limited, multer, postCtrl.modifyPost);      //étape à valider pour la modification d"un post
 router.delete("/:id", auth, postCtrl.deletePost);       //étape à valider pour la suppression d"un post
-router.post("/:id/like", auth, limited, postCtrl.likePost);      //étape à valider pour les like dislike d"un post
+router.post("/:id/like", auth, postCtrl.likePost);      //étape à valider pour les like dislike d"un post
 
 module.exports = router;

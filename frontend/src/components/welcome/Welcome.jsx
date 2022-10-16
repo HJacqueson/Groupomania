@@ -47,7 +47,7 @@ function Welcome(props) {
         })
         .then((res) => {
             console.log(res.data)
-            setLike(post.likes)
+            setLike(post)
         })
         .catch(error => {
             console.log(error)
@@ -64,7 +64,7 @@ function Welcome(props) {
         return (
             <div className="container p-0 m-0"> 
                 <Profil props={props} />
-                <div className="row justify-content-center">
+                <div className="row justify-content-center m-0">
                     { items &&
                     items.map( post => (
                         
@@ -80,7 +80,7 @@ function Welcome(props) {
                                 }
                         <button className="bg-light m-3 mt-0 rounded-pill" onClick={() => likeSubmit(post)}>
                             <Badge  pill variant="danger">
-                                J'aime : {post.likes}
+                                {post.usersLiked.find(element => element === userId) ? <span className="fa-solid fa-thumbs-up"></span> : <span className="fa-regular fa-thumbs-up"></span>} J'aime: {post.likes}
                             </Badge>
                         </button>
                             </div>

@@ -34,7 +34,6 @@ function Signup () {
         <div className="container">
             <h1 className="text-center fw-bold mt-3 mb-0 p-4 border border-bottom-0 border-secondary" style={{backgroundColor: "black", color: "white"}}>Bienvenue</h1>
             <h2 className="text-center mb-3 p-4 border border-top-0 border-secondary shadow" style={{backgroundColor: "black", color: "white"}}>sur le réseau social de Groupomania !</h2>
-            {/* <img src={logo} className="w-100" alt="Logo de Groupomania, entreprise de grande distribution européenne" /> */}
             <div className="row mb-5 p-5 border-top border-secondary" style={{backgroundColor: "#FFD7D7"}}>
                 <div className="col-12 col-md-4 pb-5">
                     <h3>S'inscrire</h3>
