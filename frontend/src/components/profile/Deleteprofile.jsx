@@ -14,7 +14,7 @@ function Deleteprofile(){
         })
         .then(res => {
             console.log(res.status)
-            axios.delete(`${process.env.REACT_APP_API}/users/`+userId, {
+            axios.delete("http://localhost:4200/api/users/"+userId, {
                 headers: {"Authorization": `Bearer ${mytoken}`}
             })
                 .then(() => {

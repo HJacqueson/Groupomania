@@ -44,7 +44,7 @@ function Welcome(props) {
         console.log(post.usersLiked)
 
         console.log(post)
-        axios.post(`${process.env.REACT_APP_API}/posts/`+post._id+"/like", post, {
+        axios.post("http://localhost:4200/api/posts/"+post._id+"/like", post, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${mytoken}` }

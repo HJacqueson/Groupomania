@@ -12,7 +12,7 @@ function Signup () {
 
     const signup = user => {
         console.log(user)
-        axios.post(`${process.env.REACT_APP_API}/auth/signup`, user,
+        axios.post("http://localhost:4200/api/auth/signup", user,
         {
             headers: {"Content-Type": "application/json"}
         })

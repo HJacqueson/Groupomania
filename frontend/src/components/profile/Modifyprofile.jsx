@@ -23,7 +23,7 @@ function Modifyprofile(){
             role:user.role 
         }))
 
-        axios.put(`${process.env.REACT_APP_API}/users/`+userId, updateProfile ,{
+        axios.put("http://localhost:4200/api/users/"+userId, updateProfile ,{
                 headers: {
                     "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${mytoken}`
