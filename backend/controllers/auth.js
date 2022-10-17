@@ -21,7 +21,9 @@ exports.signup = (req, res, next) => {      //inscription d"n nouvel utilisateur
         console.log(user);
         user.save()
           .then(() => res.status(201).json({ message: "Compte créé !" }))
+          .catch(error => res.status(400).json({ message: error + "Adrresse mail déja utilisée !" }));        
       })
+      .catch(error => res.status(500).json({ error }));
 };
 
 exports.login = (req, res, next) => {       //connexion d"un utilisateur

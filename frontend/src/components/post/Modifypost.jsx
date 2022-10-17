@@ -1,6 +1,7 @@
 import {useForm} from "react-hook-form"
 import axios from "axios"
 import e404 from "../../assets/404.jpg"
+import { useNavigate } from "react-router-dom"
 
 function Modifypost(){
     let userId = localStorage.getItem("userId")
@@ -9,6 +10,7 @@ function Modifypost(){
     let title = localStorage.getItem("title")
     let content = localStorage.getItem("content")
     const { register, handleSubmit } = useForm()
+    const navigate = useNavigate()
     
     const onSubmit = post => {
         console.log(post)
@@ -31,7 +33,7 @@ function Modifypost(){
                 localStorage.removeItem("title")
                 localStorage.removeItem("content")
                 alert('Article modifié !')
-                // window.location="/welcome"
+                navigate("/welcome")
             })
             .catch(error => {
                 console.log(error)

@@ -1,6 +1,6 @@
 import axios from "axios"
 import {useForm} from "react-hook-form"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import background from "../../assets/icon-left-font.png"
 
 
@@ -8,7 +8,8 @@ import background from "../../assets/icon-left-font.png"
 
 
 function Signup () {
-    const { register, handleSubmit, formState: { errors },} = useForm();
+    const { register, handleSubmit, formState: { errors },} = useForm()
+    const navigate = useNavigate()
 
     const signup = user => {
         console.log(user)
@@ -20,7 +21,7 @@ function Signup () {
             console.log(res.status)
             console.log(res.data)
             alert("Nouveau Compte créé ! Veuillez vous connecter")
-            window.location = "/"
+            navigate("/")
             
         })
         .catch(error => {

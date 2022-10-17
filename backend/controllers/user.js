@@ -42,7 +42,8 @@ exports.deleteUser = (req, res, next) => {      //suppression d"un utilisateur
     User.findOne({_id: req.params.id})
     .then(user => {
         console.log(user.id)
-        if (user.id != req.auth.userId) {
+        console.log(req.auth.userId)
+        if (user.id !== req.auth.userId) {
             res.status(401).json({ message : "Not authorized"})
         } else {
           Post.find({userId: req.params.id})
@@ -66,5 +67,6 @@ exports.deleteUser = (req, res, next) => {      //suppression d"un utilisateur
            
         }
     })
+    .catch(error => res.status(500).json({ error }));
     
   };

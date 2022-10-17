@@ -1,11 +1,12 @@
 import axios from "axios"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import {useForm} from "react-hook-form"
 import background from "../../assets/icon-left-font.png"
 
 
 function Login () {
     const { register, handleSubmit} = useForm()
+    const navigate = useNavigate()
 
     const login = user => {
         console.log(user)
@@ -24,7 +25,7 @@ function Login () {
             localStorage.setItem("role", res.data.role)
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("profilePicture", res.data.profilePicture)
-            window.location = "/welcome"
+            navigate("/welcome")
         })
         .catch(error => {
             console.log(error)

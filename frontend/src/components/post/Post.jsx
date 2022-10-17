@@ -5,7 +5,7 @@ import e404 from "../../assets/404.jpg"
 
 function Post() {
     let userId = localStorage.getItem("userId")
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, reset } = useForm()
     let mytoken = localStorage.getItem("token")
     let firstname = localStorage.getItem("firstname")
     console.log(firstname)
@@ -25,7 +25,7 @@ function Post() {
             console.log(res.status)
             console.log(res.data)
             alert("Nouvel article créé !")
-            window.location="/welcome"
+            reset()
         })
         .catch(error => {
             console.log(error)

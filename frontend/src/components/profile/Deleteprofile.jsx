@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import {useForm} from"react-hook-form" 
 import axios from"axios" 
 
@@ -5,26 +6,37 @@ function Deleteprofile(){
     let userId = localStorage.getItem("userId")
     let mytoken = localStorage.getItem("token") 
     const { register, handleSubmit } = useForm() 
+    const navigate = useNavigate()
 
     const onSubmit = user => {
         console.log(user)
-        axios.post(`${process.env.REACT_APP_API}/auth/login`, user,
+        axios.post("http://localhost:4200/api/auth/login", user,
         {
             headers: {"Content-Type":"application/json"}
         })
         .then(res => {
-            console.log(res.status)
-            axios.delete("http://localhost:4200/api/users/"+userId, {
-                headers: {"Authorization": `Bearer ${mytoken}`}
-            })
-                .then(() => {
-                    alert(`Votre compte a bien été supprimé, nous espérons vous revoir très bientôt, vous allez être redirigé vers la page d"inscription`) 
-                    localStorage.clear()
-                    window.location ="/signup"
+            console.log(res.data)
+            console.log(res.data.userId)
+            if(res.data.userId === userId){
+                axios.delete("http://localhost:4200/api/users/"+userId, {
+                    headers: {"Authorization": `Bearer ${mytoken}`}
                 })
-                .catch(error => {
-                    console.log(error)
-                })
+                    .then(() => {
+                        alert(`Votre compte a bien été supprimé, nous espérons vous revoir très bientôt, vous allez être redirigé vers la page d"inscription`) 
+                        localStorage.clear()
+                        navigate("/signup")
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+    
+            } else {
+                alert("L'adresse mail ou le mot de passe semble incorrect")
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            alert("L'adresse mail ou le mot de passe semble incorrect")
         })    
     }
 

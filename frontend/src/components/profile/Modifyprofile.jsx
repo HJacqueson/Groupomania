@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import {useForm} from "react-hook-form"
 import axios from "axios"
 import Deleteprofile from "./Deleteprofile"
@@ -11,6 +12,7 @@ function Modifyprofile(){
     let mytoken = localStorage.getItem("token")
     
     const { register, handleSubmit } = useForm()
+    const navigate = useNavigate()
     
     const onSubmit = user => {
         console.log(user)
@@ -37,15 +39,14 @@ function Modifyprofile(){
                         localStorage.setItem("firstname", user.firstname)
                         localStorage.setItem("lastname", user.lastname)
                         localStorage.setItem("profilePicture", res.data.profilePicture)
-                        window.location="/welcome"
+                        alert("Votre profil a bien été modifié !")
+                        navigate("/welcome")
                     })
                     .catch(error => console.log(error))
                 
             })
             .catch(error => {
                 console.log(error)
-                alert(": Cet email semble déjà utilisé !")
-                window.location.reload()
             });
     
     }
