@@ -5,7 +5,7 @@ function Deletepost({postId, deleteItem}) {
     let mytoken = localStorage.getItem("token")
     const delItem = () => {
         console.log(postId)
-        axios.delete(`${process.env.REACT_APP_API}/posts/`+postId,{
+        axios.delete("http://localhost:4200/api/posts/"+postId,{
             headers: {"Authorization": `Bearer ${mytoken}` }
         })
         .then(() => {
