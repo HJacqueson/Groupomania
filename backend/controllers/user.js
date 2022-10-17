@@ -54,8 +54,8 @@ exports.deleteUser = (req, res, next) => {      //suppression d"un utilisateur
             .then(() =>
               User.findOne({id: req.params.id})
                   .then(user => {
-                    const filename = user.profilePicture.split("/images/profile/")[1];
-                    fs.unlink(`images/profile/${filename}`, () => {
+                    const filename = user.profilePicture.split("/images/")[1];
+                    fs.unlink(`images/${filename}`, () => {
                     User.deleteOne({_id: req.params.id})
                         .then(() => { res.status(200).json({message: "Utilisateur supprimé !"})}
                         )}

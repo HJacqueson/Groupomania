@@ -1,7 +1,9 @@
 import {useForm} from "react-hook-form"
 import axios from "axios"
+import e404 from "../../assets/404.jpg"
 
 function Modifypost(){
+    let userId = localStorage.getItem("userId")
     let mytoken = localStorage.getItem("token")
     let postId = localStorage.getItem("postId")
     let title = localStorage.getItem("title")
@@ -29,42 +31,43 @@ function Modifypost(){
                 localStorage.removeItem("title")
                 localStorage.removeItem("content")
                 alert('Article modifié !')
-                window.location="/welcome"
+                // window.location="/welcome"
             })
             .catch(error => {
                 console.log(error)
-                window.location.reload()
             });
     
     }
 
     return (
-        <div>
-            <div className="container mt-5 pb-3">
-                <div className="row p-3 m-5" style={{backgroundColor: "#FFD7D7"}}>
-                    <div className="col-md-5  mb-5 mt-5">
-                        <h5>Modification de votre article</h5>
-                        <form onSubmit={handleSubmit(onSubmit)}>
+        userId ?
+        <div className="container mt-5 pb-3">
+            <div className="row p-3 m-5" style={{backgroundColor: "#FFD7D7"}}>
+                <div className="col-md-5  mb-5 mt-5">
+                    <h5>Modification de votre article</h5>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-group">
-                            <label htmlFor="name">Titre</label>
-                            <textarea type="text" rows="1" style={{resize: "none"}} className="form-control" id="title" {...register("title", { required: true })}>{title}</textarea>
+                            <label htmlFor="title">Titre</label>
+                            <textarea type="text" rows="1" style={{resize: "none"}} className="form-control" id="title" {...register("title", { required: true })} defaultValue={title}></textarea>
                             <small id="emailHelp" className="form-text text-muted">champs requis</small>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="lastname">Article</label>
-                            <textarea type="text" rows="5" style={{resize: "none"}} className="form-control" id="article" {...register("content", { required: true })}>{content}</textarea>
+                            <label htmlFor="post">Article</label>
+                            <textarea type="text" rows="5" style={{resize: "none"}} className="form-control" id="article" {...register("content", { required: true })} defaultValue={content}></textarea>
                             <small id="emailHelp" className="form-text text-muted">champs requis</small>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="formFile" className="form-label" >Telecharger une photo</label>
                             <input className="form-control" type="file" {...register("imageUrl", { required: false })} id="formFile"></input>
+                            <small id="emailHelp" className="form-text text-muted">Attention, si vous souhaitez conserver l'image d'origine de l'article, celle-ci devra être sélectionnée de nouveau !</small>
                         </div>
-                        <button type="submit" className="btn btn-dark mt-3 mb-5">Poster</button>
+                        <button type="submit" className="btn btn-dark mt-3 mb-5">Modifier</button>
                     </form>
-                    </div>
                 </div>
             </div>
         </div>
+        : <div><img src={e404} className="pt-5 w-100 img-fluid" alt="error"></img></div>
+    
     )
 }
 

@@ -10,7 +10,7 @@ function Login () {
     const login = user => {
         console.log(user)
         localStorage.clear()
-        axios.post("http://localhost:4200/api/auth/login", user,
+        axios.post(`${process.env.REACT_APP_API}/auth/login`, user,
         {
             headers: {"Content-Type": "application/json"}
         })

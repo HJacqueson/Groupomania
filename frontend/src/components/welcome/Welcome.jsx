@@ -1,9 +1,11 @@
-import axios from "axios";
+import axios from "axios"
 import {useState, useEffect} from "react"
 import Profil from "../profile/Profile"
 import Deletepost from "../post/Deletepost"
 import Badge from 'react-bootstrap/Badge'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import e404 from "../../assets/404.jpg"
+
 
 
 function Welcome(props) {
@@ -42,7 +44,7 @@ function Welcome(props) {
         console.log(post.usersLiked)
 
         console.log(post)
-        axios.post("http://localhost:4200/api/posts/"+post._id+"/like", post, {
+        axios.post(`${process.env.REACT_APP_API}/posts/`+post._id+"/like", post, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${mytoken}` }
@@ -58,9 +60,12 @@ function Welcome(props) {
 
     if (items === undefined) {
         return (
+            userId ?
             <div className="container">
                 <div className="mt-5 p-5">Chargement...</div>
             </div>
+            : <div><img src={e404} className="pt-5 w-100 img-fluid" alt="error"></img></div>
+
         )
     } else {
         return (
@@ -75,7 +80,7 @@ function Welcome(props) {
                             <div className="card-body rounded bg-light p-0 m-3 shadow"> 
                                 <h5 className="card-title mb-0 p-2" style={{color:"black"}}>{post.title} </h5>
                                 <p className="card-text mb-0 p-2 pb-3 border-bottom">{post.content}.</p>
-                                {post.imageUrl !== undefined && (<img className="card-img-top d-block mx-auto mw-100" src={post.imageUrl} alt="Card cap"></img>)}
+                                {post.imageUrl !== null  && (<img className="card-img-top d-block mx-auto mw-100" src={post.imageUrl} alt="Card cap"></img>)}
                                 <p className="bg-light m-0 p-1">
                                     posté par {post.firstname} {post.lastname} le {post.createdAt.split("-")[2].split("T")[0].split(".")[0]}/{post.createdAt.split("-")[1].split("T")[0].split(".")[0]}/{post.createdAt.split("-")[0].split("T")[0].split(".")[0]} à {post.createdAt.split("T")[1].split(".")[0]} (UTC) 
                                 </p>
@@ -100,7 +105,6 @@ function Welcome(props) {
                     )).reverse()
                     }               
                 </div>
-
             </div>
         )
         }    

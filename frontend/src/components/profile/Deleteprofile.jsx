@@ -8,13 +8,13 @@ function Deleteprofile(){
 
     const onSubmit = user => {
         console.log(user)
-        axios.post("http://localhost:4200/api/auth/login", user,
+        axios.post(`${process.env.REACT_APP_API}/auth/login`, user,
         {
             headers: {"Content-Type":"application/json"}
         })
         .then(res => {
             console.log(res.status)
-            axios.delete("http://localhost:4200/api/users/"+userId, {
+            axios.delete(`${process.env.REACT_APP_API}/users/`+userId, {
                 headers: {"Authorization": `Bearer ${mytoken}`}
             })
                 .then(() => {

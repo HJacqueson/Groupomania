@@ -1,7 +1,10 @@
 import {useForm} from "react-hook-form"
 import axios from "axios"
+import e404 from "../../assets/404.jpg"
+
 
 function Post() {
+    let userId = localStorage.getItem("userId")
     const { register, handleSubmit } = useForm()
     let mytoken = localStorage.getItem("token")
     let firstname = localStorage.getItem("firstname")
@@ -30,8 +33,8 @@ function Post() {
     }
 
     return (
-        <div className="container">
-            
+        userId ?
+        <div className="container">            
             <div className="row p-3" style={{backgroundColor: "#FFD7D7"}}>
                 <h3 className="mt-5 pt-5">Ajouter un article</h3>
                 <div className="col-md-6">
@@ -55,6 +58,8 @@ function Post() {
                 </div>
             </div>
         </div>
+        : <div><img src={e404} className="pt-5 w-100 img-fluid" alt="error"></img></div>
+
     )
 }
 

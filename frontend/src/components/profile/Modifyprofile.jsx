@@ -1,6 +1,8 @@
 import {useForm} from "react-hook-form"
 import axios from "axios"
 import Deleteprofile from "./Deleteprofile"
+import e404 from "../../assets/404.jpg"
+
 
 function Modifyprofile(){
     let firstname = localStorage.getItem("firstname")
@@ -21,7 +23,7 @@ function Modifyprofile(){
             role:user.role 
         }))
 
-        axios.put("http://localhost:4200/api/users/"+userId, updateProfile ,{
+        axios.put(`${process.env.REACT_APP_API}/users/`+userId, updateProfile ,{
                 headers: {
                     "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${mytoken}`
@@ -50,6 +52,7 @@ function Modifyprofile(){
 
 
     return (
+        userId ?
         <div>
             <div className="container mt-5 pb-3">
                 <div className="row p-3 m-5" style={{backgroundColor: "#FFD7D7"}}>
@@ -79,6 +82,8 @@ function Modifyprofile(){
                 </div>
             </div>
         </div>
+        : <div><img src={e404} className="pt-5 w-100 img-fluid" alt="error"></img></div>
+
     )
 }
 

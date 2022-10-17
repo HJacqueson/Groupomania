@@ -35,7 +35,7 @@ function Logout(){
                 </div>
             </div>        
         </div>  
-        : <div><img src={e404} className="mb-5 img-fluid" alt="error"></img></div>
+        : <div><img src={e404} className="pt-5 w-100 img-fluid" alt="error"></img></div>
     )
 }
 
