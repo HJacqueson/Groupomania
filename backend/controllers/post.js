@@ -36,17 +36,19 @@ exports.modifyPost = (req, res, next) => {      //modification d"un Utilisateur
   Post.findOne({_id: req.params.id})
       .then(post => {
         console.log(post)
-        if (post.imageUrl !== null){
+        console.log(postObject) 
+        if(req.file != undefined){
           const filename = post.imageUrl.split("/images/")[1];
           fs.unlink(`images/${filename}`, () => {
-            Post.updateOne({ _id: req.params.id}, { ...postObject})
-            .then(() => res.status(200).json({message : "Article modifié!"}))
-        })}else{
-          console.log(postObject) 
+          Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
+              .then(() => res.status(200).json({message : "Utilisateur modifié!"}))
+        })
+        }else{
           Post.updateOne({ _id: req.params.id}, { ...postObject})
-          .then(() => res.status(200).json({message : "Article modifié!"}))
-          }     
-      })
+            .then(() => res.status(200).json({message : "Article modifié!"}))
+        }    
+      }
+      )
 }
 
 exports.getAllPosts = (req, res, next) => {     //obtention de l'ensemble des posts de tous les utilisateurs

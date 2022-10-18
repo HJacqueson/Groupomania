@@ -37,7 +37,7 @@ function Modifypost(){
             })
             .catch(error => {
                 console.log(error)
-            });
+            })
     
     }
 

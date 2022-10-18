@@ -30,7 +30,7 @@ function Login () {
         .catch(error => {
             console.log(error)
             alert(": Veuillez créer un Compte, ou entrer un Email et un Mot de Passe correct !")
-        });
+        })
         
     }
     
@@ -74,4 +74,4 @@ function Login () {
     )
 }
 
-export default Login;
+export default Login

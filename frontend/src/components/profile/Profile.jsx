@@ -23,7 +23,7 @@ function Profile(){
                 <h4 className="p-5 pt-3 pb-0">Bonjour {firstname} {lastname}</h4>
             </div>
             <div className="row">
-                <div className="btn-toolbar justify-content-center">
+                <div className="btn-toolbar justify-content-center pb-4">
                     <button onClick={() =>{ navigate("/post")}} type="submit" className="shadow-lg btn btn-dark mt-5 mx-5">Poster un article</button>                
                     <button onClick={() =>{ navigate("/modifyprofile")}} type="submit" className="shadow-lg btn btn-dark mt-5">Modifier mon profil</button>
                 </div>

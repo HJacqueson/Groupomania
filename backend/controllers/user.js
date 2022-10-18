@@ -16,8 +16,17 @@ exports.modifyUser = (req, res, next) => {      //modification d"un Utilisateur
                 res.status(401).json({ message : "Not authorized"});
             } else {
                 console.log(user)
+                console.log(req.file)
+                if(req.file != undefined && user.profilePicture !="http://localhost:4200/images/profile.png"){
+                    const filename = user.profilePicture.split("/images/")[1];
+                    fs.unlink(`images/${filename}`, () => {
+                    User.updateOne({ _id: req.params.id}, { ...userObject, _id: req.params.id})
+                        .then(() => res.status(200).json({message : "Utilisateur modifié!"}))
+                })
+                }else{
                 User.updateOne({ _id: req.params.id}, { ...userObject, _id: req.params.id})
-                .then(() => res.status(200).json({message : "Utilisateur modifié!"}))
+                    .then(() => res.status(200).json({message : "Utilisateur modifié!"}))
+                }
             }
         })
   };

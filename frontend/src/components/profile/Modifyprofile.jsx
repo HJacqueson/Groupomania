@@ -47,7 +47,7 @@ function Modifyprofile(){
             })
             .catch(error => {
                 console.log(error)
-            });
+            })
     
     }
 

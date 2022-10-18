@@ -25,9 +25,9 @@ function Signup () {
             
         })
         .catch(error => {
-            console.log(error);
-            alert("Adresse mail déjà utilisée ! Veuillez vous connecter ou vous inscrire avec une adresse mail différente.");
-        });
+            console.log(error)
+            alert("Adresse mail déjà utilisée ! Veuillez vous connecter ou vous inscrire avec une adresse mail différente.")
+        })
         
     }
 
@@ -119,4 +119,4 @@ function Signup () {
     )
 }
 
-export default Signup;
+export default Signup

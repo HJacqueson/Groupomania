@@ -22,7 +22,7 @@ function Deleteprofile(){
                     headers: {"Authorization": `Bearer ${mytoken}`}
                 })
                     .then(() => {
-                        alert(`Votre compte a bien été supprimé, nous espérons vous revoir très bientôt, vous allez être redirigé vers la page d"inscription`) 
+                        alert(`Votre compte a bien été supprimé, nous espérons vous revoir très bientôt, vous allez être redirigé vers la page d'inscription`) 
                         localStorage.clear()
                         navigate("/signup")
                     })
