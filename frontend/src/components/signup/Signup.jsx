@@ -50,7 +50,7 @@ function Signup () {
                             />
                             {errors.lastname && (
                                 <p className="text-center text-danger mt-1">
-                                  Le nom de famille ne doit contenir que des lettres !
+                                  Le nom de famille ne doit contenir que des lettres et deux caractères minimum !
                                 </p>
                             )}{""}
                             <small className="form-text text-muted">Veuillez rentrer votre nom de famille</small>
@@ -66,7 +66,7 @@ function Signup () {
                             />
                             {errors.firstname && (
                                 <p className="text-center text-danger mt-1">
-                                    Le prénom ne doit contenir que des lettres !
+                                    Le prénom ne doit contenir que des lettres et deux caractères minimum !
                                 </p>
                             )}{""}
                             <small className="form-text text-muted">Veuillez rentrer votre prénom</small>
@@ -96,7 +96,7 @@ function Signup () {
                             />
                             {errors.password && (
                                 <p className="text-center text-danger mt-1">
-                                    Le mot de passe doit contenir au moins 8 caractères avec au moins 1 majuscule 1 minuscule et 1 caractère spécial !
+                                    Le mot de passe doit contenir au moins 8 caractères avec au moins 1 majuscule, 1 minuscule, 1 caractère spécial et 2 chiffres !
                                 </p>
                             )}
                             <small className="form-text text-muted">Veuillez rentrer votre mot de passe</small>

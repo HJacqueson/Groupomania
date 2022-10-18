@@ -9,7 +9,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 
-mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_MDP}@cluster0.kqwhflt.mongodb.net/?retryWrites=true&w=majority`,   //connexion à mongoDB
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_MDP}@cluster0.kqwhflt.mongodb.net/Groupomania`,   //connexion à mongoDB
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log("Connexion à MongoDB réussie !"))
@@ -26,6 +26,8 @@ app.use((req, res, next) => {   //gestion des accès
   });
 
 app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/images", express.static(path.join(__dirname, "images")));
+
 
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);

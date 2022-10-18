@@ -61,7 +61,6 @@ function Modifypost(){
                         <div className="mb-3">
                             <label htmlFor="formFile" className="form-label" >Telecharger une photo</label>
                             <input className="form-control" type="file" {...register("imageUrl", { required: false })} id="formFile"></input>
-                            <small id="emailHelp" className="form-text text-muted">Attention, si vous souhaitez conserver l'image d'origine de l'article, celle-ci devra être sélectionnée de nouveau !</small>
                         </div>
                         <button type="submit" className="btn btn-dark mt-3 mb-5">Modifier</button>
                     </form>

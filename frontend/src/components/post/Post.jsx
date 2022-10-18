@@ -40,14 +40,14 @@ function Post() {
                 <div className="col-md-6">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-group">
-                            <label htmlFor="name">Titre</label>
+                            <label htmlFor="title">Titre</label>
                             <input type="text" className="form-control" id="title" {...register("title", { required: true })}  placeholder="Titre de l'article"></input>
-                            <small id="emailHelp" className="form-text text-muted">champs requis</small>
+                            <small className="form-text text-muted">champs requis</small>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="lastname">Article</label>
+                            <label htmlFor="post">Article</label>
                             <textarea type="text" rows="5" style={{resize: "none"}} className="form-control" id="article" {...register("content", { required: true })}  placeholder="Votre article ici"></textarea>
-                            <small id="emailHelp" className="form-text text-muted">champs requis</small>
+                            <small className="form-text text-muted">champs requis</small>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="formFile" className="form-label" >Telecharger une photo</label>

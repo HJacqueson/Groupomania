@@ -36,20 +36,16 @@ exports.modifyPost = (req, res, next) => {      //modification d"un Utilisateur
   Post.findOne({_id: req.params.id})
       .then(post => {
         console.log(post)
-        if (post.userId != req.auth.userId) {
-            res.status(401).json({ message : "Not authorized"});
-        } else {
-          if (post.imageUrl !== null){
-            const filename = post.imageUrl.split("/images/")[1];
-            fs.unlink(`images/${filename}`, () => {
-              Post.updateOne({ _id: req.params.id}, { ...postObject})
-              .then(() => res.status(200).json({message : "Article modifié!"}))
-          })}else{
-            console.log(postObject) 
+        if (post.imageUrl !== null){
+          const filename = post.imageUrl.split("/images/")[1];
+          fs.unlink(`images/${filename}`, () => {
             Post.updateOne({ _id: req.params.id}, { ...postObject})
             .then(() => res.status(200).json({message : "Article modifié!"}))
-            }     
-        }
+        })}else{
+          console.log(postObject) 
+          Post.updateOne({ _id: req.params.id}, { ...postObject})
+          .then(() => res.status(200).json({message : "Article modifié!"}))
+          }     
       })
 }
 
