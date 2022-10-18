@@ -23,7 +23,7 @@ Le frontend a été crée avec **React.js** et **Bootstrap**.
 
 ### Installation
 
-Dans le terminal de VSCODE, situez-vous dans le dossier **/backend** en tapant **cd frontend**.
+Dans le terminal de VSCODE, situez-vous dans le dossier **/frontend** en tapant **cd frontend**.
 Entrez la commande **yarn install** dans le terminal pour installer toutes les dépendances du frontend.
 
 ### Development server
