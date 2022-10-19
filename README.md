@@ -29,3 +29,21 @@ Entrez la commande **yarn install** dans le terminal pour installer toutes les d
 ### Development server
 
 Entrez **yarn start** pour avoir accès au serveur de développement. L'application se rechargera automatiquement à la modification d'un fichier source.
+
+## Base de Données
+
+Dans votre terminal, sur le répertoire de votre MongoDB, entrez les commandes :
+```
+mongoimport --db Groupomania --collection users --type=json --
+file /<chemin d’accès>/Creez_un_réseau_social_d’entreprise_jacqueson-herve/Jacqueson_Herve_1_bdd_082022/Goupomania/users.json
+```
+puis:
+```
+mongoimport --db Groupomania --collection users --type=json --
+file /<chemin d’accès>/Creez_un_réseau_social_d’entreprise_jacqueson-herve/Jacqueson_Herve_1_bdd_082022/Goupomania/posts.json
+```
+Ensuite, rendez vous dans le backend sur le fichier app.js, sur la ligne 12 mongoose.connect afin de rentrer votre lien de connection à votre base de données, en lieu et place du lien déjà existant. 
+
+Si vous n'êtes pas un utilisateur de MongoDB, il vous suffit de laisser le lien mongoose.connect du fichier app.js du backend telles quelles, pour vous connecter directement à la base données originelle.
+
+
