@@ -28,7 +28,7 @@ Entrez la commande **yarn install** dans le terminal pour installer toutes les d
 
 ### Development server
 
-Entrez **yarn start** pour avoir accès au serveur de développement. L'application se rechargera automatiquement à la modification d'un fichier source.
+Entrez la commande **yarn start** dans le terminal pour avoir accès au serveur de développement. L'application se rechargera automatiquement à la modification d'un fichier source.
 
 ## Base de Données
 
