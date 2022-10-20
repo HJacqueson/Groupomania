@@ -41,7 +41,7 @@ Dans votre terminal, sur le répertoire de votre MongoDB, entrez les commandes :
 mongoimport --db Groupomania --collection users --type=json --
 file /<chemin d’accès>/Creez_un_réseau_social_d’entreprise_jacqueson-herve/Jacqueson_Herve_1_bdd_082022/Goupomania/users.json
 ```
-puis:
+puis :
 ```
 mongoimport --db Groupomania --collection users --type=json --
 file /<chemin d’accès>/Creez_un_réseau_social_d’entreprise_jacqueson-herve/Jacqueson_Herve_1_bdd_082022/Goupomania/posts.json
