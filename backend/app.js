@@ -9,7 +9,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 
-mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_MDP}@cluster0.kqwhflt.mongodb.net/Groupomania`,   //connexion à mongoDB
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_MDP}${process.env.MONGODB_CLUSTER}.mongodb.net/Groupomania`,   //connexion à mongoDB
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log("Connexion à MongoDB réussie !"))
