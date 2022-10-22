@@ -1,15 +1,15 @@
-import {useForm} from "react-hook-form"
-import axios from "axios"
-import e404 from "../../assets/404.jpg"
+import {useForm} from "react-hook-form"     //import du hook de formulaire
+import axios from "axios"       //import du client HTTP axios
+import e404 from "../../assets/404.jpg"     //import de l'image d'erreur 404
 
 
 function Post() {
-    let userId = localStorage.getItem("userId")
-    const { register, handleSubmit, reset } = useForm()
+    let userId = localStorage.getItem("userId")     //récupération des données utiles de l'utilsateur dans le local storage
     let mytoken = localStorage.getItem("token")
     let firstname = localStorage.getItem("firstname")
-    console.log(firstname)
     let lastname = localStorage.getItem("lastname")
+
+    const { register, handleSubmit, reset } = useForm()     //hook de formulaire
 
     const onSubmit = post => {
         console.log(post.imageUrl)
@@ -17,7 +17,7 @@ function Post() {
         newPost.append("image", post.imageUrl[0])
         newPost.append("post", JSON.stringify({content:post.content, title:post.title, firstname:firstname, lastname:lastname}))
         console.log(post)
-        axios.post("http://localhost:4200/api/posts", newPost,
+        axios.post("http://localhost:4200/api/posts", newPost,      //requête de création d'article
             {
                 headers: {"Content-Type": "multipart/form-data", "Authorization": `Bearer ${mytoken}` }
             })
@@ -25,13 +25,13 @@ function Post() {
             console.log(res.status)
             console.log(res.data)
             alert("Nouvel article créé !")
-            reset()
+            reset()     //reset de la page courante
         })
         .catch(error => {
             console.log(error)
         })   
     }
-
+//page de création d'article
     return (
         userId ?
         <div className="container">            

@@ -1,26 +1,26 @@
-import axios from "axios"
-import {useState, useEffect} from "react"
-import Profil from "../profile/Profile"
-import Deletepost from "../post/Deletepost"
-import Badge from 'react-bootstrap/Badge'
-import { useNavigate } from "react-router-dom"
-import e404 from "../../assets/404.jpg"
+import axios from "axios"       //import du client HTTP axios
+import {useState, useEffect} from "react"       //import du hook d'état et du hook d'effet
+import Profil from "../profile/Profile"     //import du composant de profil
+import Deletepost from "../post/Deletepost"     //import du composant de suppression d'article
+import Badge from 'react-bootstrap/Badge'       //import de l'élément Badge
+import { useNavigate } from "react-router-dom"      //import du hook de navigation
+import e404 from "../../assets/404.jpg"     //import de l'image d'erreur 404
 
 
 
 function Welcome(props) {
-    const [items, setItems] = useState()
-    const [delItem, setDelitem] = useState(0)
-    const [like, setLike] = useState()
-    let mytoken = localStorage.getItem("token")
+    let mytoken = localStorage.getItem("token")     //récupération des données utiles de l'utilsateur dans le local storage
     let userId = localStorage.getItem("userId")
-    console.log(userId)
     let role = localStorage.getItem("role")
-    const navigate = useNavigate()
+    
+    const [items, setItems] = useState()        //hook d'obtention d'articles
+    const [delItem, setDelitem] = useState(0)       //hook de suppression d'articles
+    const [like, setLike] = useState()      //hook de likes
+    const navigate = useNavigate()      //hook de navigation
     
  
     useEffect(() => {
-        axios.get("http://localhost:4200/api/posts", {
+        axios.get("http://localhost:4200/api/posts", {      //requête d'obtention de tous les posts
             headers:{
                 "Authorization": `Bearer ${mytoken}`
             }
@@ -33,18 +33,18 @@ function Welcome(props) {
         .catch(error => console.log(error))
     },[mytoken, delItem, like])
   
-    const deleteItem = postId => {
+    const deleteItem = postId => {      //suppression d'article
         let newItems = [...items]
         newItems = newItems.filter(post => post.id !== postId)
         setDelitem(newItems)
     }
 
-    const likeSubmit = (post) => {
+    const likeSubmit = (post) => {      //gestion des likes
         console.log(post)
         console.log(post.usersLiked)
 
         console.log(post)
-        axios.post("http://localhost:4200/api/posts/"+post._id+"/like", post, {
+        axios.post("http://localhost:4200/api/posts/"+post._id+"/like", post, {     //requête d'obtetion des likes
             headers: {
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${mytoken}` }
@@ -57,14 +57,14 @@ function Welcome(props) {
             console.log(error)
         }) 
     }
-
+//page de fil d'actualité avec présentation des articles antéchronologique
     if (items === undefined) {
         return (
             userId ?
             <div className="container">
                 <div className="mt-5 p-5">Chargement...</div>
             </div>
-            : <div><img src={e404} className="pt-5 w-100 img-fluid" alt="error"></img></div>
+            : <div><img src={e404} className="pt-5 w-100 img-fluid" alt="error"></img></div>        //page d'erreur 404
 
         )
     } else {

@@ -1,5 +1,4 @@
 const User = require("../models/User"); 
-const Post = require("../models/Post");
 const fs = require("fs");       //module de gestion de fichier
 
 
@@ -38,11 +37,6 @@ exports.getAllUsers = (req, res, next) => {     //obtention de l"ensemble des ut
 
 exports.getOneUser = (req, res, next) => {      //obtention d"un utilisateur
     User.findOne({ _id: req.params.id })
-      .then(user => res.status(200).json(user))
-};
-
-exports.getUserByName = (req, res, next) => {      //obtention d"un utilisateur par son nom
-    User.findOne({ name: req.params.name })
       .then(user => res.status(200).json(user))
 };
 

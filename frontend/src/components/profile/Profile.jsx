@@ -1,15 +1,16 @@
-import { useNavigate } from "react-router-dom"
-import e404 from "../../assets/404.jpg"
-import logo from "../../assets/icon-left-font.png"
+import { useNavigate } from "react-router-dom"      //import du hook de navigation
+import e404 from "../../assets/404.jpg"     //import de l'image d'erreur 404
+import logo from "../../assets/icon-left-font.png"      //import du logo
 
 
 function Profile(){
-    let userId = localStorage.getItem("userId")
+    let userId = localStorage.getItem("userId")     //récupération des données utiles de l'utilsateur dans le local storage
     let firstname = localStorage.getItem("firstname")
     let lastname = localStorage.getItem("lastname")
     let profilePicture = localStorage.getItem("profilePicture")
-    const navigate = useNavigate()
     
+    const navigate = useNavigate()      //hook de navigation
+//composant de profil d'utilisateur   
     return (
         userId ?
         <div className ="container p-0 m-0">
@@ -29,7 +30,7 @@ function Profile(){
                 </div>
             </div>        
         </div>  
-        : <div><img src={e404} className="mb-5 img-fluid" alt="error"></img></div>
+        : <div><img src={e404} className="mb-5 img-fluid" alt="error"></img></div>      //page d'erreur 404
     )
 }
 

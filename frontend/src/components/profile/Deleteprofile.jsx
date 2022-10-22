@@ -1,16 +1,17 @@
-import { useNavigate } from "react-router-dom"
-import {useForm} from"react-hook-form" 
-import axios from"axios" 
+import { useNavigate } from "react-router-dom"      //import du hook de navigation
+import {useForm} from"react-hook-form"      //import du hook de formulaire
+import axios from"axios"        //import du client HTTP axios
 
 function Deleteprofile(){
-    let userId = localStorage.getItem("userId")
+    let userId = localStorage.getItem("userId")     //récupération des données utiles de l'utilsateur dans le local storage     
     let mytoken = localStorage.getItem("token") 
-    const { register, handleSubmit } = useForm() 
+
+    const { register, handleSubmit } = useForm()        //hook de formulaire
     const navigate = useNavigate()
 
     const onSubmit = user => {
         console.log(user)
-        axios.post("http://localhost:4200/api/auth/login", user,
+        axios.post("http://localhost:4200/api/auth/login", user,        //requête de connexion d'utilisateur
         {
             headers: {"Content-Type":"application/json"}
         })
@@ -18,13 +19,13 @@ function Deleteprofile(){
             console.log(res.data)
             console.log(res.data.userId)
             if(res.data.userId === userId){
-                axios.delete("http://localhost:4200/api/users/"+userId, {
+                axios.delete("http://localhost:4200/api/users/"+userId, {       //requête de suppression de compte d'utilisateur
                     headers: {"Authorization": `Bearer ${mytoken}`}
                 })
                     .then(() => {
                         alert(`Votre compte a bien été supprimé, nous espérons vous revoir très bientôt, vous allez être redirigé vers la page d'inscription`) 
                         localStorage.clear()
-                        navigate("/signup")
+                        navigate("/signup")     //redirection vers la page d'inscription
                     })
                     .catch(error => {
                         console.log(error)
@@ -39,7 +40,7 @@ function Deleteprofile(){
             alert("L'adresse mail ou le mot de passe semble incorrect")
         })    
     }
-
+//composant de suppression de compte utilisateur
     return (
         <div>
             <div className="offset-md-2 mb-5 mt-5">

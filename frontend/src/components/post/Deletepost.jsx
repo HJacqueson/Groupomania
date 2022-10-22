@@ -1,21 +1,20 @@
-import axios from "axios"
+import axios from "axios"       //import du client HTTP axios
 
 function Deletepost({postId, deleteItem}) {
-    console.log(postId)
-    let mytoken = localStorage.getItem("token")
+    let mytoken = localStorage.getItem("token")     //récupération du token dans le local storage
+    
     const delItem = () => {
-        console.log(postId)
-        axios.delete("http://localhost:4200/api/posts/"+postId,{
+        axios.delete("http://localhost:4200/api/posts/"+postId,{        //requête de récupération d'un post
             headers: {"Authorization": `Bearer ${mytoken}` }
         })
         .then(() => {
-            deleteItem(postId)
+            deleteItem(postId)      //suppression du post
         })
         .catch(error => {
             console.log(error)
         }) 
     }
-
+//composant bouton de suppression de post
     return (
         <div className="bg-light p-3 rounded-bottom">
             <button className="shadow btn btn-dark" onClick={() => delItem()}>Supprimer l'article</button>

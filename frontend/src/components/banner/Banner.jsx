@@ -1,5 +1,5 @@
-import {Link} from "react-router-dom"
-
+import {Link} from "react-router-dom"       //import de l'élément link
+//bannière de header
 function Banner() {
     return(
         <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark shadow fs-5 fw-bold">

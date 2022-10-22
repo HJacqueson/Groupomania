@@ -1,4 +1,4 @@
-function Footer(){
+function Footer(){      //footer de bas de page
     return (
         <div className="container mt-4">
             <div className="row navbar-dark bg-dark fixed-bottom">

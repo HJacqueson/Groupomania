@@ -1,6 +1,5 @@
 const Post = require("../models/Post");     //utilisation du modèle post
 const fs = require("fs");       //module de gestion de fichier
-const auth = require("../middleware/auth");
 
 
 
@@ -56,14 +55,9 @@ exports.getAllPosts = (req, res, next) => {     //obtention de l'ensemble des po
       .then(posts => res.status(200).json(posts))
 };
 
-exports.getOnePost = (req, res, next) => {      //obtention d"un post d'un utilisateur
+exports.getOnePost = (req, res, next) => {      //obtention d'un post d'un utilisateur
     Post.findOne({ _id: req.params.id })
       .then(post => res.status(200).json(post))
-};
-
-exports.getPostsByUserId = (req, res, next) => {        //obtention de tous les posts d'un utilisateur
-    Post.find({where: {userId: req.params.id}, order: ["createdAt", "DESC"]})
-    .then(posts => {res.status(200).json({data: posts});})
 };
 
 exports.deletePost = (req, res, next) => {      //suppression d'un post

@@ -1,6 +1,6 @@
 const passwordSchema = require("../models/Password");
 
-//vérification de la validité des mots passe renseigner en paramètre
+//vérification de la validité des mots de passe renseignés en paramètre
 module.exports = (req, res, next) => {
     if (!passwordSchema.validate(req.body.password)) {  
         let messages = passwordSchema.validate(req.body.password, {details: true }) ;  

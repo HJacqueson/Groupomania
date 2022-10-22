@@ -1,24 +1,24 @@
-import axios from "axios"
-import {Link, useNavigate} from "react-router-dom"
-import {useForm} from "react-hook-form"
-import background from "../../assets/icon-left-font.png"
+import axios from "axios"       //import du client HTTP axios
+import {Link, useNavigate} from "react-router-dom"      //import du hook navigate et de l'élément link
+import {useForm} from "react-hook-form"     //import du hook de formulaire
+import background from "../../assets/icon-left-font.png"        //import de l'image de background
 
 
 function Login () {
-    const { register, handleSubmit} = useForm()
-    const navigate = useNavigate()
+    const { register, handleSubmit} = useForm()     //hook de formulaire
+    const navigate = useNavigate()      //hook de navigation
 
     const login = user => {
         console.log(user)
         localStorage.clear()
-        axios.post("http://localhost:4200/api/auth/login", user,
+        axios.post("http://localhost:4200/api/auth/login", user,        //requête de récupération de l'utilisateur
         {
             headers: {"Content-Type": "application/json"}
         })
         .then(res => {
             console.log(res.status)
             console.log(res.data)
-            localStorage.setItem("userId", res.data.userId)
+            localStorage.setItem("userId", res.data.userId)     //stockage des données de l'utilisateur ne mettant pas en cause la sécurité dans le local storage
             localStorage.setItem("firstname", res.data.firstname)
             localStorage.setItem("email", res.data.email)
             localStorage.setItem("lastname", res.data.lastname)
@@ -33,7 +33,7 @@ function Login () {
         })
         
     }
-    
+//page de connexion
     return (
         <div className="container">
             <h1 className="text-center fw-bold mt-3 mb-0 p-4 border border-bottom-0 border-secondary" style={{backgroundColor: "black", color: "white"}}>Bienvenue</h1>

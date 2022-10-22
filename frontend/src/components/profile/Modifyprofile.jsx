@@ -1,23 +1,23 @@
-import { useNavigate } from "react-router-dom"
-import {useForm} from "react-hook-form"
-import axios from "axios"
-import Deleteprofile from "./Deleteprofile"
-import e404 from "../../assets/404.jpg"
+import { useNavigate } from "react-router-dom"      //import du hook de navigation
+import {useForm} from "react-hook-form"     //import du hook de formulaire
+import axios from "axios"       //import du client HTTP axios
+import Deleteprofile from "./Deleteprofile"     //import du composant de suppression de profil
+import e404 from "../../assets/404.jpg"     //import de l'image d'erreur 404
 
 
 function Modifyprofile(){
-    let firstname = localStorage.getItem("firstname")
+    let firstname = localStorage.getItem("firstname")       //récupération des données utiles de l'utilsateur dans le local storage
     let lastname = localStorage.getItem("lastname")
     let userId = localStorage.getItem("userId")
     let mytoken = localStorage.getItem("token")
     
-    const { register, handleSubmit } = useForm()
-    const navigate = useNavigate()
+    const {register, handleSubmit} = useForm()        //hook de formulaire
+    const navigate = useNavigate()      //hook de navigation
     
     const onSubmit = user => {
         console.log(user)
 
-        const updateProfile = new FormData()
+        const updateProfile = new FormData()        //interface de construction d'objet
         updateProfile.append("image", user.profilePicture[0])
         updateProfile.append("user", JSON.stringify({
             firstname:user.firstname, 
@@ -25,22 +25,22 @@ function Modifyprofile(){
             role:user.role 
         }))
 
-        axios.put("http://localhost:4200/api/users/"+userId, updateProfile ,{
+        axios.put("http://localhost:4200/api/users/"+userId, updateProfile ,{       //requête de modification de profil utilisateur
                 headers: {
                     "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${mytoken}`
                 }})
             .then(() => {
-                axios.get("http://localhost:4200/api/users/"+userId, {
+                axios.get("http://localhost:4200/api/users/"+userId, {      //requête de récuperation d'un utilisateur
                     headers: { "Authorization": `Bearer ${mytoken}`}
                     })
                     .then((res) => {
                         console.log(res.data)
-                        localStorage.setItem("firstname", user.firstname)
+                        localStorage.setItem("firstname", user.firstname)       //enregistrement des données utiles de l'utilisateur dans le local storage
                         localStorage.setItem("lastname", user.lastname)
                         localStorage.setItem("profilePicture", res.data.profilePicture)
                         alert("Votre profil a bien été modifié !")
-                        navigate("/welcome")
+                        navigate("/welcome")        //redirection vers le fil d'actualité
                     })
                     .catch(error => console.log(error))
                 
@@ -50,8 +50,7 @@ function Modifyprofile(){
             })
     
     }
-
-
+//page de modification/suppression de profil
     return (
         userId ?
         <div>
@@ -83,7 +82,7 @@ function Modifyprofile(){
                 </div>
             </div>
         </div>
-        : <div><img src={e404} className="pt-5 w-100 img-fluid" alt="error"></img></div>
+        : <div><img src={e404} className="pt-5 w-100 img-fluid" alt="error"></img></div>        //page d'erreur 404
 
     )
 }

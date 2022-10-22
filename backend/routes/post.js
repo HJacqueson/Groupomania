@@ -1,4 +1,4 @@
-const express = require("express");     //utilisation d"express
+const express = require("express");     //utilisation d'Express
 const router = express.Router();        //utilisation du créateur de route
 const auth = require("../middleware/auth");     //utilisation du middleware auth
 const multer = require("../middleware/multer-config");      //utilisation du middleware multer

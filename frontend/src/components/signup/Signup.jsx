@@ -1,19 +1,19 @@
-import axios from "axios"
-import {useForm} from "react-hook-form"
-import {Link, useNavigate} from "react-router-dom"
-import background from "../../assets/icon-left-font.png"
+import axios from "axios"       //import du client HTTP axios
+import {useForm} from "react-hook-form"     //import du hook de formulaire
+import {Link, useNavigate} from "react-router-dom"      //import du hook de navigation et de l'élément link
+import background from "../../assets/icon-left-font.png"        //import de l'image de background
 
 
 
 
 
 function Signup () {
-    const { register, handleSubmit, formState: { errors },} = useForm()
-    const navigate = useNavigate()
+    const { register, handleSubmit, formState: { errors },} = useForm()     //hook de formulaire
+    const navigate = useNavigate()      //hook de navigation
 
     const signup = user => {
         console.log(user)
-        axios.post("http://localhost:4200/api/auth/signup", user,
+        axios.post("http://localhost:4200/api/auth/signup", user,       //requête dinscription d'utilisateur
         {
             headers: {"Content-Type": "application/json"}
         })
@@ -21,7 +21,7 @@ function Signup () {
             console.log(res.status)
             console.log(res.data)
             alert("Nouveau Compte créé ! Veuillez vous connecter")
-            navigate("/")
+            navigate("/")       //redirection vers la page de connexion
             
         })
         .catch(error => {
@@ -30,7 +30,7 @@ function Signup () {
         })
         
     }
-
+//page d'inscription
     return (
         <div className="container">
             <h1 className="text-center fw-bold mt-3 mb-0 p-4 border border-bottom-0 border-secondary" style={{backgroundColor: "black", color: "white"}}>Bienvenue</h1>
