@@ -35,7 +35,7 @@ function Welcome(props) {
   
     const deleteItem = postId => {      //suppression d'article
         let newItems = [...items]
-        newItems = newItems.filter(post => post.id !== postId)
+        newItems = newItems.filter(post => post._id !== postId)
         setDelitem(newItems)
     }
 
