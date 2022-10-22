@@ -75,7 +75,7 @@ function Welcome(props) {
                     { items &&
                     items.map( post => (
                         
-                    <div key={post.id} className="col-8 pb-5 mb-5">
+                    <div key={post._id} className="col-8 pb-5 mb-5">
                         <div className="mt-3 p-2 rounded" style={{backgroundColor: "#FFD7D7"}}>
                             <div className="rounded bg-light p-0 m-3 shadow"> 
                                 <h5 className="mb-0 p-2" style={{color:"black"}}>{post.title} </h5>
