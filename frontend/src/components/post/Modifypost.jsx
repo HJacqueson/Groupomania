@@ -51,12 +51,12 @@ function Modifypost(){
                         <div className="form-group">
                             <label htmlFor="title">Titre</label>
                             <textarea type="text" rows="1" style={{resize: "none"}} className="form-control" id="title" {...register("title", { required: true })} defaultValue={title}></textarea>
-                            <small id="emailHelp" className="form-text text-muted">champs requis</small>
+                            <small id="emailHelp" className="form-text text-dark">champs requis</small>
                         </div>
                         <div className="form-group">
                             <label htmlFor="post">Article</label>
-                            <textarea type="text" rows="5" style={{resize: "none"}} className="form-control" id="article" {...register("content", { required: true })} defaultValue={content}></textarea>
-                            <small id="emailHelp" className="form-text text-muted">champs requis</small>
+                            <textarea type="text" rows="5" style={{resize: "none"}} className="form-control" id="post" {...register("content", { required: true })} defaultValue={content}></textarea>
+                            <small id="emailHelp" className="form-text text-dark">champs requis</small>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="formFile" className="form-label" >Telecharger une photo</label>

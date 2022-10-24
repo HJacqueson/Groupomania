@@ -5,8 +5,10 @@ module.exports = (req, res, next) => {      //paramètres d'utilisation du token
        const token = req.headers.authorization.split(" ")[1];
        const decodedToken = jwt.verify(token, process.env.TOKEN);
        const userId = decodedToken.userId;
+       const role = decodedToken.role;
        req.auth = {
-           userId: userId
+           userId: userId,
+           role: role
        };
 	next();
    } catch(error) {

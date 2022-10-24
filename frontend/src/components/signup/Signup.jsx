@@ -41,7 +41,7 @@ function Signup () {
                     <form onSubmit={handleSubmit(signup)}>
                         <div className="form-group">
                             <label htmlFor="exampleInputLastName">Nom</label>
-                            <input autoFocus required type="text" className="form-control" id="lastname" placeholder="Entrez votre Nom" 
+                            <input autoFocus required type="text" className="form-control" id="exampleInputLastName" placeholder="Entrez votre Nom" 
                             {...register("lastname", {
                                 minLength: 2,
                                 maxLength: 26,
@@ -57,7 +57,7 @@ function Signup () {
                        </div>
                        <div className="form-group">
                             <label htmlFor="exampleInputLastName">Prénom</label>
-                            <input required type="text" className="form-control" id="firstname" placeholder="Entrez votre Prénom" 
+                            <input required type="text" className="form-control" id="exampleInputLastName" placeholder="Entrez votre Prénom" 
                             {...register("firstname", {
                                 minLength: 2,
                                 maxLength: 26,
@@ -73,7 +73,7 @@ function Signup () {
                        </div>
                        <div className="form-group">
                             <label htmlFor="exampleInputEmail">Adresse Mail</label>
-                            <input type="email" className="form-control" id="email" placeholder="Entrez votre Email" 
+                            <input type="email" className="form-control" id="exampleInputEmail" placeholder="Entrez votre Email" 
                             {...register("email", {
                                 minLength: 5,
                                 pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}/,
@@ -88,7 +88,7 @@ function Signup () {
                        </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword">Mot de Passe</label>
-                            <input type="password" className="form-control" id="password" placeholder="Entrez votre mot de passe" 
+                            <input type="password" className="form-control" id="exampleInputPassword" placeholder="Entrez votre mot de passe" 
                             {...register("password", {
                                 minLength: 8,
                                 pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/
@@ -107,7 +107,7 @@ function Signup () {
                         }>Créer son compte</button>
                     </form>
                     <p className="mt-5">Vous avez déjà compte ?</p>
-                    <Link className="signup-link" to="/">
+                    <Link className="signup-link text-dark" to="/">
                         Se Connecter
                     </Link>
                 </div>

@@ -1,5 +1,6 @@
 const Post = require("../models/Post");     //utilisation du modèle post
 const fs = require("fs");       //module de gestion de fichier
+const { post } = require("../routes/auth");
 
 
 
@@ -27,27 +28,34 @@ exports.createPost = (req, res, next) => {     //création d'un post
   }
 };
 
-exports.modifyPost = (req, res, next) => {      //modification d"un Utilisateur 
+exports.modifyPost = (req, res, next) => {      //modification d"un Utilisateur
+  const userId = req.auth.userId;
+  const role = req.auth.role;
+  console.log(role)
   const postObject = req.file ? {
     ...JSON.parse(req.body.post),
     imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
   } : {...JSON.parse(req.body.post)};
   Post.findOne({_id: req.params.id})
-      .then(post => {
+    .then(post => { 
+      console.log(post);
+      if(userId === post.userId || role === "ADMIN"){
         console.log(post)
         console.log(postObject) 
         if(req.file != undefined){
           const filename = post.imageUrl.split("/images/")[1];
           fs.unlink(`images/${filename}`, () => {
-          Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
+            Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
               .then(() => res.status(200).json({message : "Utilisateur modifié!"}))
-        })
+          })
         }else{
           Post.updateOne({ _id: req.params.id}, { ...postObject})
             .then(() => res.status(200).json({message : "Article modifié!"}))
-        }    
-      }
-      )
+          }   
+      }else{
+        res.status(401).json({message: "Not authorized"});
+      }   
+    })  
 }
 
 exports.getAllPosts = (req, res, next) => {     //obtention de l'ensemble des posts de tous les utilisateurs
@@ -65,17 +73,17 @@ exports.deletePost = (req, res, next) => {      //suppression d'un post
   Post.findOne({ _id: req.params.id})
       .then(post => {
         console.log(post)
-            const image = post.imageUrl
-            if (image != null) {
+        const image = post.imageUrl
+        Post.deleteOne({_id: req.params.id})
+          .then(() => {
+            if(image != null){
               const filename = post.imageUrl.split("/images/")[1];
-              fs.unlink(`images/${filename}`, () => {
-              Post.deleteOne({_id: req.params.id})
-                  .then(() => { res.status(200).json({message: "Objet supprimé !"})})
-              });
-            } else {
-              Post.deleteOne({_id: req.params.id})
-                  .then(() => { res.status(200).json({message: "Objet supprimé !"})})
+              fs.unlink(`images/${filename}`, (error) => {
+                if (error) throw error;
+                console.log("File deleted!")})
             }
+          })
+          .then(() => { res.status(200).json({message: "Objet supprimé !"})})
       })
 };
 

@@ -44,17 +44,17 @@ function Login () {
                     <form onSubmit={handleSubmit(login)}>
                        <div className="form-group">
                             <label htmlFor="exampleInputEmail">Adresse Mail</label>
-                            <input type="email" className="form-control" id="email" placeholder="Entrez votre Email" 
+                            <input type="email" className="form-control" id="exampleInputEmail" placeholder="Entrez votre Email" 
                             {...register("email", { required: true })}
                             ></input>
-                            <small className="form-text text-muted">Veuillez rentrer votre adresse mail</small>
+                            <small className="form-text text-dark">Veuillez rentrer votre adresse mail</small>
                        </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword">Mot de Passe</label>
-                            <input type="password" className="form-control" id="password" placeholder="Entrez votre mot de passe" 
+                            <input type="password" className="form-control" id="exampleInputPassword" placeholder="Entrez votre mot de passe" 
                             {...register("password", { required: true })}
                             ></input>
-                            <small className="form-text text-muted">Veuillez rentrer votre mot de passe</small>
+                            <small className="form-text text-dark">Veuillez rentrer votre mot de passe</small>
                         </div>
                         <button type="submit" className="btn btn-primary mt-3" 
                         onClick={
@@ -62,7 +62,7 @@ function Login () {
                         }>Connexion</button>
                     </form>
                     <p className="mt-5">Vous n'avez pas de compte ?</p>
-                    <Link className="signup-link" to="/signup">
+                    <Link className="signup-link text-dark" to="/signup">
                         Créer un compte
                     </Link>
                 </div>

@@ -44,7 +44,9 @@ exports.login = (req, res, next) => {       //connexion d"un utilisateur
                         role: user.role,
                         profilePicture: user.profilePicture,
                         token: jwt.sign(
-                            { userId: user._id },
+                            { userId: user._id,
+                              role: user.role,
+                            },
                             process.env.TOKEN,
                             { expiresIn: "24h" }
                         )

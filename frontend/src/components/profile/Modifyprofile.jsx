@@ -61,13 +61,13 @@ function Modifyprofile(){
                             <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
                                 <label htmlFor="name">Nom</label>
-                                <input type="text" className="form-control" id="lastname" {...register("lastname", { required: true })}  defaultValue={lastname}></input>
-                                <small id="emailHelp" className="form-text text-muted">champs requis</small>
+                                <input type="text" className="form-control" id="name" {...register("lastname", { required: true })}  defaultValue={lastname}></input>
+                                <small id="emailHelp" className="form-text text-dark">champs requis</small>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="lastname">Prénom</label>
+                                <label htmlFor="firstname">Prénom</label>
                                 <input type="text" className="form-control" id="firstname" {...register("firstname", { required: true })}  defaultValue={firstname}></input>
-                                <small id="emailHelp" className="form-text text-muted">champs requis</small>
+                                <small id="emailHelp" className="form-text text-dark">champs requis</small>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="formFile" className="form-label" >Photo de profil</label>
