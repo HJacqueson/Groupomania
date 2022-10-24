@@ -53,7 +53,7 @@ function Signup () {
                                   Le nom de famille ne doit contenir que des lettres et deux caractères minimum !
                                 </p>
                             )}{""}
-                            <small className="form-text text-muted">Veuillez rentrer votre nom de famille</small>
+                            <small className="form-text text-dark">Veuillez rentrer votre nom de famille</small>
                        </div>
                        <div className="form-group">
                             <label htmlFor="exampleInputLastName">Prénom</label>
@@ -69,7 +69,7 @@ function Signup () {
                                     Le prénom ne doit contenir que des lettres et deux caractères minimum !
                                 </p>
                             )}{""}
-                            <small className="form-text text-muted">Veuillez rentrer votre prénom</small>
+                            <small className="form-text text-dark">Veuillez rentrer votre prénom</small>
                        </div>
                        <div className="form-group">
                             <label htmlFor="exampleInputEmail">Adresse Mail</label>
@@ -84,7 +84,7 @@ function Signup () {
                                     Entrer une adresse email valide !
                                 </p>
                             )}
-                            <small className="form-text text-muted">Veuillez rentrer votre adresse mail</small>
+                            <small className="form-text text-dark">Veuillez rentrer votre adresse mail</small>
                        </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword">Mot de Passe</label>
@@ -99,7 +99,7 @@ function Signup () {
                                     Le mot de passe doit contenir au moins 8 caractères avec au moins 1 majuscule, 1 minuscule, 1 caractère spécial et 2 chiffres !
                                 </p>
                             )}
-                            <small className="form-text text-muted">Veuillez rentrer votre mot de passe</small>
+                            <small className="form-text text-dark">Veuillez rentrer votre mot de passe</small>
                         </div>
                         <button type="submit" className="btn btn-primary mt-3" 
                         onClick={
