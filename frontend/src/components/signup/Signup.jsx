@@ -56,8 +56,8 @@ function Signup () {
                             <small className="form-text text-dark">Veuillez rentrer votre nom de famille</small>
                        </div>
                        <div className="form-group mb-2">
-                            <label htmlFor="exampleInputLastName">Prénom</label>
-                            <input required type="text" className="form-control" id="exampleInputLastName" placeholder="Entrez votre Prénom" 
+                            <label htmlFor="exampleInputFirstName">Prénom</label>
+                            <input required type="text" className="form-control" id="exampleInputFirstName" placeholder="Entrez votre Prénom" 
                             {...register("firstname", {
                                 minLength: 2,
                                 maxLength: 26,
