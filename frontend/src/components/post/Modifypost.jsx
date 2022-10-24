@@ -48,12 +48,12 @@ function Modifypost(){
                 <div className="col-md-5  mb-5 mt-5">
                     <h5>Modification de votre article</h5>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-group">
+                        <div className="form-group mb-2">
                             <label htmlFor="title">Titre</label>
                             <textarea type="text" rows="1" style={{resize: "none"}} className="form-control" id="title" {...register("title", { required: true })} defaultValue={title}></textarea>
                             <small id="emailHelp" className="form-text text-dark">champs requis</small>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group mb-2">
                             <label htmlFor="post">Article</label>
                             <textarea type="text" rows="5" style={{resize: "none"}} className="form-control" id="post" {...register("content", { required: true })} defaultValue={content}></textarea>
                             <small id="emailHelp" className="form-text text-dark">champs requis</small>

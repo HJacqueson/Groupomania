@@ -47,14 +47,14 @@ function Deleteprofile(){
                 <h5>Supprimer le compte</h5>
                 <p>Attention cette action est irréversible !</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-group">
+                    <div className="form-group mb-2">
                         <label htmlFor="exampleInputEmail">Adresse Mail</label>
                         <input type="email" className="form-control" id="exampleInputEmail" placeholder="Entrez votre Email" 
                         {...register("email", { required: true })} 
                         ></input>
                         <small className="form-text text-dark">Veuillez rentrer votre adresse mail</small>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group mb-2">
                         <label htmlFor="exampleInputPassword">Mot de passe</label>
                         <input type="password" className="form-control" id="exampleInputPassword" placeholder="Entrez votre mot de passe"
                         {...register("password", { required: true })}

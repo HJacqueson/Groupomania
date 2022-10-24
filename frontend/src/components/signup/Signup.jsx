@@ -39,7 +39,7 @@ function Signup () {
                 <div className="col-12 col-md-4 pb-5">
                     <h3>S'inscrire</h3>
                     <form onSubmit={handleSubmit(signup)}>
-                        <div className="form-group">
+                        <div className="form-group mb-2">
                             <label htmlFor="exampleInputLastName">Nom</label>
                             <input autoFocus required type="text" className="form-control" id="exampleInputLastName" placeholder="Entrez votre Nom" 
                             {...register("lastname", {
@@ -55,7 +55,7 @@ function Signup () {
                             )}{""}
                             <small className="form-text text-dark">Veuillez rentrer votre nom de famille</small>
                        </div>
-                       <div className="form-group">
+                       <div className="form-group mb-2">
                             <label htmlFor="exampleInputLastName">Prénom</label>
                             <input required type="text" className="form-control" id="exampleInputLastName" placeholder="Entrez votre Prénom" 
                             {...register("firstname", {
@@ -71,7 +71,7 @@ function Signup () {
                             )}{""}
                             <small className="form-text text-dark">Veuillez rentrer votre prénom</small>
                        </div>
-                       <div className="form-group">
+                       <div className="form-group mb-2">
                             <label htmlFor="exampleInputEmail">Adresse Mail</label>
                             <input type="email" className="form-control" id="exampleInputEmail" placeholder="Entrez votre Email" 
                             {...register("email", {
@@ -86,7 +86,7 @@ function Signup () {
                             )}
                             <small className="form-text text-dark">Veuillez rentrer votre adresse mail</small>
                        </div>
-                        <div className="form-group">
+                        <div className="form-group mb-2">
                             <label htmlFor="exampleInputPassword">Mot de Passe</label>
                             <input type="password" className="form-control" id="exampleInputPassword" placeholder="Entrez votre mot de passe" 
                             {...register("password", {

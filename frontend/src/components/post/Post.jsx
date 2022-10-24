@@ -39,12 +39,12 @@ function Post() {
                 <h3 className="mt-5 pt-5">Ajouter un article</h3>
                 <div className="col-md-6">
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-group">
+                        <div className="form-group mb-2">
                             <label htmlFor="title">Titre</label>
                             <input type="text" className="form-control" id="title" {...register("title", { required: true })}  placeholder="Titre de l'article"></input>
                             <small className="form-text text-dark">champs requis</small>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group mb-2">
                             <label htmlFor="post">Article</label>
                             <textarea type="text" rows="5" style={{resize: "none"}} className="form-control" id="post" {...register("content", { required: true })}  placeholder="Votre article ici"></textarea>
                             <small className="form-text text-dark">champs requis</small>

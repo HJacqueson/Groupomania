@@ -59,12 +59,12 @@ function Modifyprofile(){
                     <div className="col-md-5  mb-5 mt-5">
                         <h5>Modification de vos données</h5>
                             <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="form-group">
+                            <div className="form-group mb-2">
                                 <label htmlFor="name">Nom</label>
                                 <input type="text" className="form-control" id="name" {...register("lastname", { required: true })}  defaultValue={lastname}></input>
                                 <small id="emailHelp" className="form-text text-dark">champs requis</small>
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mb-2">
                                 <label htmlFor="firstname">Prénom</label>
                                 <input type="text" className="form-control" id="firstname" {...register("firstname", { required: true })}  defaultValue={firstname}></input>
                                 <small id="emailHelp" className="form-text text-dark">champs requis</small>

@@ -42,14 +42,14 @@ function Login () {
                 <div className="col-12 col-md-4">
                 <h3>Connexion</h3>
                     <form onSubmit={handleSubmit(login)}>
-                       <div className="form-group">
+                       <div className="form-group mb-2">
                             <label htmlFor="exampleInputEmail">Adresse Mail</label>
                             <input type="email" className="form-control" id="exampleInputEmail" placeholder="Entrez votre Email" 
                             {...register("email", { required: true })}
                             ></input>
                             <small className="form-text text-dark">Veuillez rentrer votre adresse mail</small>
                        </div>
-                        <div className="form-group">
+                        <div className="form-group mb-2">
                             <label htmlFor="exampleInputPassword">Mot de Passe</label>
                             <input type="password" className="form-control" id="exampleInputPassword" placeholder="Entrez votre mot de passe" 
                             {...register("password", { required: true })}
