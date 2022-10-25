@@ -42,16 +42,16 @@ exports.modifyPost = (req, res, next) => {      //modification d"un Utilisateur
       if(userId === post.userId || role === "ADMIN"){
         console.log(post)
         console.log(postObject) 
-        Post.updateOne({ _id: req.params.id}, { ...postObject})
-          .then(() => {
-            if(req.file != undefined){
-              const filename = post.imageUrl.split("/images/")[1];
-              fs.unlink(`images/${filename}`, (error) => {
-                if (error) throw error;
-                console.log("File deleted!")})
-            }
+        if(req.file != undefined){
+          const filename = post.imageUrl.split("/images/")[1];
+          fs.unlink(`images/${filename}`, () => {
+            Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
+              .then(() => res.status(200).json({message : "Article modifié!"}))
           })
-          .then(() => res.status(200).json({message : "Article modifié!"}))
+        }else{
+          Post.updateOne({ _id: req.params.id}, { ...postObject})
+            .then(() => res.status(200).json({message : "Article modifié!"}))
+          }   
       }else{
         res.status(401).json({message: "Not authorized"});
       }   
