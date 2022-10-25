@@ -50,19 +50,15 @@ exports.deleteUser = (req, res, next) => {      //suppression d"un utilisateur
         } else {
             User.findOne({_id: req.params.id})
                 .then(user => {
-                    if (user.profilePicture != "http://localhost:4200/images/profile.png"){
-                        const filename = user.profilePicture.split("/images/")[1];
-                        fs.unlink(`images/${filename}`, () => {
-                        User.deleteOne({_id: req.params.id})
-                            .then(() => { res.status(200).json({message: "Utilisateur supprimé !"})}
-                            )}
-                        )
-                    }else{
-                        User.deleteOne({_id: req.params.id})
-                            .then(() => { res.status(200).json({message: "Utilisateur supprimé !"})}
-                            )
-                    }
-                    
+                    User.deleteOne({_id: req.params.id})
+                        .then(() => {
+                            if (user.profilePicture != "http://localhost:4200/images/profile.png"){
+                                const filename = user.profilePicture.split("/images/")[1];
+                                fs.unlink(`images/${filename}`, (error) => {
+                                    if (error) throw error;
+                                    console.log("File deleted!")})
+                        }})
+                        .then(() => { res.status(200).json({message: "Utilisateur supprimé !"})})                        
                 })   
         }
     })
