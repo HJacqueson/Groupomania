@@ -41,8 +41,9 @@ exports.modifyPost = (req, res, next) => {      //modification d"un Utilisateur
       console.log(post);
       if(userId === post.userId || role === "ADMIN"){
         console.log(post)
-        console.log(postObject) 
-        if(req.file != undefined){
+        console.log(postObject)
+        console.log(req.file)
+        if(post.imageUrl != null){
           const filename = post.imageUrl.split("/images/")[1];
           fs.unlink(`images/${filename}`, () => {
             Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
