@@ -45,12 +45,6 @@ exports.modifyPost = (req, res, next) => {      //modification d"un Utilisateur
         console.log(req.file)
         if(req.file != undefined){
           if(post.imageUrl != null){
-            const filename = post.imageUrl.split("/images/")[1];
-            fs.unlink(`images/${filename}`, () => {
-              Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
-                .then(() => res.status(200).json({message : "Article modifié!"}))
-            })
-          }else{
             Post.updateOne({ _id: req.params.id}, { ...postObject})
             .then(() => res.status(200).json({message : "Article modifié!"}))
           }  
